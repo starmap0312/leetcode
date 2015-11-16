@@ -1,3 +1,6 @@
+/* - notice that all the words in the word list is of identical length
+ * - solve the problem using hashmap
+ */
 #include <iostream>
 #include <vector>
 #include <unordered_map>
