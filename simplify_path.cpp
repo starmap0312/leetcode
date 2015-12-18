@@ -4,12 +4,14 @@
  *                     q.front() peeks the front element
  *                     q.empty() to check if queue is empty
  *                     queue has no iterator, i.e. (X) queue<int>::iterator
- *                     instead, use while(!q.empty()) { cout << q.front() << endl; q.pop(); } to traverse
+ *                     instead, use while(!q.empty()) { cout << q.front() << endl; q.pop(); } 
+ *                     to traverse
  * - stack<int> s; ==> s.push(3) pushes 3 to top(back); s.pop() pops the top(back) element (LIFO)
  *                     s.top() peeks the top(back) element
  *                     s.empty() to check if stack is empty
  *                     stack has no iterator, i.e. (X) stack<int>::iterator
- *                     instead, use while(!s.empty()) { cout << s.top() << endl; q.pop(); } to traverse
+ *                     instead, use while(!s.empty()) { cout << s.top() << endl; q.pop(); }
+ *                     to traverse
  */
 #include <iostream>
 #include <queue>

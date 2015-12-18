@@ -1,4 +1,4 @@
-/* 
+/* - a naive approach using sets that may spend more than O(n) time and O(1) space
  */
 #include <iostream>
 #include <set>

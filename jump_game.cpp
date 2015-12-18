@@ -17,8 +17,7 @@ public:
 
 int main() {
     Solution solution;
-    //int a[5] = { 2, 3, 1, 1, 4 };
-    int a[5] = { 3, 2, 1, 0, 4 };
+    int a[5] = { 2, 3, 1, 1, 4 };
     vector<int> v(a, a + 5);
     cout << solution.canJump(v) << endl;
     return 0;

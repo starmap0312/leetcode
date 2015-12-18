@@ -3,6 +3,7 @@
  *                   set<int>::iterator itr
  *                   to traverse set s, use the following:
  *                   for(set<int>::iterator itr = s.begin(); itr != s.end(); itr++)
+ * - a naive approach using set that may spend more than O(n) time and O(1) space
  */
 #include <iostream>
 #include <set>

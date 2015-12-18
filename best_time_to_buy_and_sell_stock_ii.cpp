@@ -1,3 +1,6 @@
+/* - complete as many transactions as you like
+ * - the problem can be solved by summing up all rising trends
+ */
 #include <iostream>
 #include <vector>
 

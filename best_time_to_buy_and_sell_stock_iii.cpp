@@ -1,4 +1,5 @@
-/* - the problem can be solved in linear time by scanning from left to right once
+/* - complete at most two transactions
+ * - the problem can be solved
  */ 
 #include <iostream>
 #include <vector>

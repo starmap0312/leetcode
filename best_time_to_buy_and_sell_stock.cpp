@@ -1,3 +1,6 @@
+/* - complete only one transaction
+ * - the problem can be solved by keeping track of the minimum price on the fly
+ */
 #include <iostream>
 #include <vector>
 
