@@ -1,5 +1,5 @@
 /* - observe that board[][] is an array of int and its initial values are either 0 or 1
- *   use a higher digit to record the updated values without chaning the first bit of 0 or 1
+ *   use a higher digit to record the updated values without changing the first bit of 0 or 1
  *   i.e. traverse each cell of the array and compute the number of its neighbors
  *        compute and store the updated value to the 2nd bit of the int
  *        once all updated values are computed and stored, shift the int of each cell to the

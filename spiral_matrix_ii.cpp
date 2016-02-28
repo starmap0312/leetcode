@@ -7,7 +7,7 @@ class Solution {
 public:
     vector<vector<int> > generateMatrix(int n) {
         if (n == 0) return vector<vector<int> >();
-        vector<vector<int> > result(n, vector<int>(n));
+        vector<vector<int> > matrix(n, vector<int>(n));
         int state = 0, x = n - 1, y = n;
         int counter = 1;
         int i = 0, j = -1;
@@ -15,44 +15,44 @@ public:
             if (state % 4 == 0) {
                 for (int k = 0; k < y; k++) {
                     j++;
-                    result[i][j] = counter;
+                    matrix[i][j] = counter;
                     counter++;
                 }
                 y--;
             } else if (state % 4 == 1) {
                 for (int k = 0; k < x; k++) {
                     i++;
-                    result[i][j] = counter;
+                    matrix[i][j] = counter;
                     counter++;
                 }
                 x--;
             } else if (state % 4 == 2) {
                 for (int k = 0; k < y; k++) {
                     j--;
-                    result[i][j] = counter;
+                    matrix[i][j] = counter;
                     counter++;
                 }
                 y--;
             } else {
                 for (int k = 0; k < x; k++) {
                     i--;
-                    result[i][j] = counter;
+                    matrix[i][j] = counter;
                     counter++;
                 }
                 x--;
             }
             state++;
         }
-        return result;
+        return matrix;
     }
 };
 
 int main() {
     Solution solution;
-    vector<vector<int> > result = solution.generateMatrix(3);
-    for (int i = 0; i < result.size(); i++) {
-        for (int j = 0; j < result[i].size(); j++)
-            cout << result[i][j] << " ";
+    vector<vector<int> > matrix = solution.generateMatrix(3);
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[i].size(); j++)
+            cout << matrix[i][j] << " ";
         cout << endl;
     }
     return 0;

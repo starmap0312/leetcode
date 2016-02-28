@@ -46,7 +46,9 @@ public:
 };
 
 void callByReference(Base &base) {
-    base.show(); base.virtual_show(); base.pure_virtual_show();
+    base.show();
+    base.virtual_show();
+    base.pure_virtual_show();
 }
 
 int main() {
