@@ -20,7 +20,8 @@ public:
         return start;
     }
 
-    // returns the upperbound of target, i.e. the first element greater than target
+    // returns the upperbound of target
+    // i.e. the first element greater than target
     int upperbound(vector<int> nums, int target) {
         int start = 0, end = nums.size();
         while (start < end) {
@@ -31,7 +32,8 @@ public:
         return start;
     }
 
-    // returns the lowerbound of target, i.e. the first element greater than or equal to target
+    // returns the lowerbound of target
+    // i.e. the first element greater than or equal to target
     int lowerbound(vector<int> nums, int target) {
         int start = 0, end = nums.size();
         while (start < end) {

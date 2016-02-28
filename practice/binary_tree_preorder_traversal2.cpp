@@ -14,22 +14,19 @@ public:
 
 class Solution {
 public:
-    vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> preorderTraversal(TreeNode* root) {
         vector<int> result;
         stack<TreeNode *> q;
         TreeNode *dummy = new TreeNode(-1);
         dummy -> right = root;
-        q.push(dummy), q.push(dummy);
+        q.push(dummy);
         while (!q.empty()) {
             TreeNode *itr = q.top();
             q.pop();
-            if (q.empty() || q.top() != itr) {
-                if (itr != dummy) result.push_back(itr -> val);
-                continue;
-            }
             itr = itr -> right;
             while (itr != NULL) {
-                q.push(itr), q.push(itr);
+                q.push(itr);
+                result.push_back(itr -> val);
                 itr = itr -> left;
             }
         }
@@ -42,7 +39,7 @@ int main() {
     root -> right = new TreeNode(2);
     root -> right -> left = new TreeNode(3);
     Solution solution;
-    vector<int> rc = solution.postorderTraversal(root);
+    vector<int> rc = solution.preorderTraversal(root);
     for (int i = 0; i < rc.size(); i++)
         cout << rc[i] << endl;
     return 0;

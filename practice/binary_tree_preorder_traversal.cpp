@@ -3,7 +3,8 @@
  *        while the queue is not empty:
  *            pop the top node
  *            output the leftmost path from the top node
- *            during the visit of the leftmost path, push every right child to the queue
+ *            during the visit of the leftmost path, push every right child to
+ *                the queue
  */
 #include <iostream>
 #include <stack>
@@ -29,6 +30,7 @@ public:
         while (!q.empty()) {
             TreeNode *itr = q.top();
             q.pop();
+            // push the nodes of the leftmost path
             while (itr != NULL) {
                 if (itr -> right != NULL)
                     q.push(itr -> right);
