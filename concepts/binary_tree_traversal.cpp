@@ -1,6 +1,25 @@
-/* - during the depth-first traversal of the tree, use a stack to stores the roots
- *   whose right subtrees have not yet been traversed
- * - we need to create a dummy node whose right child is set to be the input root
+/* - traverse the tree in a depth-first order
+ *   during the traversal, use a stack to remember the nodes whose right subtrees 
+ *   yet been visited
+ * - intially, the stack contains only one dummy node whose right child is the root
+ * - while the stack is not empty:
+ *       pop out the top element, say node i
+ *       traverse the nodes in the leftmost path from node i
+ *       push every node in the leftmost path into stack during the traversal
+ * - 1) preorder traversal:
+ *       output the nodes visited while pushing the nodes in the leftmost path into
+ *       the stack
+ *   2) inorder traversal:
+ *       output node i when pop it out of the stack
+ *   3) postorder traversal:
+ *       when node i is to be poped out of the stack at the first time
+ *       do not actually pop it out, as we need to output it after the traversal of 
+ *       its right subtree is complete
+ *       so we can define an additional field in the node structure to acomplish this
+ *       alternatively, we can push each node to the stack twice to distinguish
+ *       if the node is the first time poped out or its right subtree is traversed
+ *       or we can use an additional pointer, say lastVisisted, to remember what is
+ *       the last visited node (a more succint and dedicate way)
  */
 #include <iostream>
 #include <vector>
