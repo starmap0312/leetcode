@@ -1,8 +1,8 @@
-/* - construct a graph based on the input, find the shortedst path from the node of beginWord
- *   to the node of endWord. the path indicates a transformation sequence from beginWord to
- *   endWord
- * - the algorithm can be improved by not constructing the graph, but operate on the wordDict
- *   and a queue of strings
+/* - construct a graph based on the input, find the shortedst path from the node of
+ *   beginWord to the node of endWord. the path indicates a transformation sequence
+ *   from beginWord to endWord
+ * - the algorithm can be improved by not constructing the graph, but operate on the
+ *   wordDict and a queue of strings
  */
 #include <iostream>
 #include <vector>

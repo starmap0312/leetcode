@@ -96,6 +96,8 @@
  *
  *     operations:
  *       mp[3] = "three";       // store a pair of (3, "three") into the hashmap
+ *       mp.erase(4);           // delete element with key 4 from the hashmap
+ *       mp.erase(itr);         // delete the element pointed by itr
  *       mp.find(3) == v.end(); // find if the key is in the hashmap
  *
  *     for-loop traversal:
