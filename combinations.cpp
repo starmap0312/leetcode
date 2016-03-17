@@ -1,5 +1,14 @@
-/* - (select k out of 1..n) can be recursively solved by:
- *   (not select n and select k out of 1..n - 1) + (select n and select k - 1 out of 1..n - 1)
+/* - a divide-and-conquer approach using recursion
+ * - (select k out of 1..n) can be recursively solved by:
+ *   case 1: n is not picked, and select k out of 1..n - 1
+ *   case 2: n is picked, and select k - 1 out of 1..n - 1
+ *   ex. select 2 out of 1..4
+ *        i) 4 is not picked:
+ *           select 2 out of 1..3 ==> [[1, 2], [1, 3], [2, 3]]
+ *       ii) 4 is picked:
+ *           select 1 out of 1..3 ==> [[1], [2], [3]]
+ *                                ==> [[1, 4], [2, 4], [3, 4]]
+ *       final result: [[1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]]
  */
 #include <iostream>
 #include <vector>
@@ -8,20 +17,25 @@ using namespace std;
 
 class Solution {
 public:
+    // select k out of 1..n
     vector<vector<int> > combine(int n, int k) {
         vector<vector<int> > result;
-        if (k == 0 || n < 1) return result;
-        if (k == 1) {
+        // boundary cases: k <= 1 or n < 1
+        if (k == 0 || n == 0) return result;
+        else if (k == 1 && n > 0) {
             for (int i = 1; i <= n; i++)
                 result.push_back(vector<int>(1, i));
             return result;
         }
+        // case 1: n is not picked, and select k out of 1..n - 1
         result = combine(n - 1, k);
-        vector<vector<int> > with = combine(n - 1, k - 1);
-        for (int i = 0; i < with.size(); i++) {
-            with[i].push_back(n);
-            result.push_back(with[i]);
+        // case 2: n is picked, and select k - 1 out of 1..n - 1
+        vector<vector<int> > nIsPicked = combine(n - 1, k - 1);
+        for (int i = 0; i < nIsPicked.size(); i++) {
+            nIsPicked[i].push_back(n);
         }
+        // combine the results of the two cases
+        result.insert(result.end(), nIsPicked.begin(), nIsPicked.end());
         return result;
     }
 };

@@ -1,5 +1,7 @@
-/* - another approach of using recursion: faster than the first approach
- * - the same approach is used in "subsets" and "subsets_ii" problems
+/* - similar idea to the previous solution, but
+ *   try to exhaust all possible choices using recursion
+ * - this solution is more efficient than the previous solution, as it does not return every
+ *   subset of choices (the return vector embodies pass-by-value), which spends much time
  */
 #include <iostream>
 #include <vector>
@@ -8,25 +10,30 @@ using namespace std;
 
 class Solution {
 public:
+    // select k out of 1..n
     vector<vector<int> > combine(int n, int k) {
-        if (n < 1 || k == 0) return result;
-        vector<int> list;
-        choose(n, k, 1, list);
+        vector<vector<int> > result;
+        // boundary cases: k <= 1 or n < 1
+        if (k == 0 || n == 0) return result;
+        vector<int> choices;
+        choose(n, k, 1, choices, result);
         return result;
     }
-    void choose(int n, int k, int index, vector<int> &list) {
-        if (list.size() == k) {
-            result.push_back(list);
-            return;
-        }
-        for (int i = index; i <= n; i++) {
-            list.push_back(i);
-            choose(n, k, i + 1, list);
-            list.pop_back();
-        }
+
+    void choose(int n, int k, int num, vector<int> &choices, vector<vector<int> > &result) {
+       if (choices.size() == k) {
+           result.push_back(choices);
+           return;
+       }
+       if (num > n) return;
+       choices.push_back(num);
+       // choice 1: pick num
+       choose(n, k, num + 1, choices, result);
+       // undo the choice
+       choices.pop_back();
+       // choice 2: do not pick num 
+       choose(n, k, num + 1, choices, result);
     }
-private:
-    vector<vector<int> > result;
 };
 
 int main() {

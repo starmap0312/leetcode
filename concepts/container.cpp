@@ -58,6 +58,10 @@
  *           cout << v[i] << " ";
  *       }
  *
+ *     append one vector to the end of another vector:
+ *       vector<int> v1, v2;
+ *       v1.insert(v1.end(), v2.begin(), v2.end());
+ *
  * - priority_queue: implements maxHeap (default) or minHeap
  *
  *     usages:
