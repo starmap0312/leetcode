@@ -1,7 +1,7 @@
 /* - similar idea to the previous solution, but
  *   try to exhaust all possible choices using recursion
  * - this solution is more efficient than the previous solution, as it does not return every
- *   subset of choices (the return vector embodies pass-by-value), which spends much time
+ *   subset of choices (the return solution uses pass-by-value)
  */
 #include <iostream>
 #include <vector>

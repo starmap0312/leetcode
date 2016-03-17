@@ -1,5 +1,8 @@
-/* - use recursion, for all chocies that can be made, two consecutive identical choices 
- *   need not to be made twice to ensure uniqueness of the answer
+/* - exhaust all possible chocies using recursion
+ *   first, sort the input sequence
+ *   next, determine the next number to be picked between index..max_num
+ * - to ensure the uniqueness, we do not pick two consecutive identical numbers
+ *   this technique is quite generic and should pay attention to it
  */
 #include <iostream>
 #include <vector>
@@ -9,22 +12,23 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int> > subsetsWithDup(vector<int>& nums) {
+        vector<vector<int> > result;
         sort(nums.begin(), nums.end());
-        vector<int> list;
-        subsets(nums, 0, list);
+        vector<int> choices;
+        subsets(nums, 0, choices, result);
         return result;
     }
-    void subsets(vector<int> &nums, int index, vector<int> &list) {
-        result.push_back(list);
+
+    void subsets(vector<int> &nums, int index, vector<int> &choices, vector<vector<int> > &result) {
+        result.push_back(choices);
         for (int i = index; i < nums.size(); i++) {
+            // bypass if the number is equal to its predecessor (always pick a different number)
             if (i > index && nums[i] == nums[i - 1]) continue;
-            list.push_back(nums[i]);
-            subsets(nums, i + 1, list);
-            list.pop_back();
+            choices.push_back(nums[i]); // choose nums[i]
+            subsets(nums, i + 1, choices, result);
+            choices.pop_back(); // undo the choice
         }
     }
-private:
-    vector<vector<int> > result;
 };
 
 int main() {

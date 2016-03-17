@@ -1,6 +1,7 @@
-/* - if the sub-problem of size n - 1 is solved, consider one more element which can be added
- *   or not added into the answer, so make one copy of the answer and add the element into
- *   the answer. The answer and the added copy together constitue the answer of the problem
+/* - the problem can be easily solved via dynamic programming
+ *   i.e. if the solution to the subproblem of size n - 1 is solved
+ *        to compute the solution of the problem of size n
+ *        for each subset we can either append the next number to its end or not to append
  */
 #include <iostream>
 #include <vector>
@@ -14,15 +15,16 @@ public:
         vector<vector<int> > result;
         result.push_back(vector<int>());
         for (int i = 0; i < nums.size(); i++) {
-            vector<vector<int> > copy = result;
-            addElement(copy, nums[i]);
-            result.insert(result.end(), copy.begin(), copy.end());
+            vector<vector<int> > duplicate = result;
+            addElement(duplicate, nums[i]);
+            result.insert(result.end(), duplicate.begin(), duplicate.end());
         }
         return result;
     }
-    void addElement(vector<vector<int> > &v, int n) {
+
+    void addElement(vector<vector<int> > &v, int num) {
         for (int i = 0; i < v.size(); i++) {
-            v[i].push_back(n);
+            v[i].push_back(num);
         }
     }
 };
@@ -33,9 +35,12 @@ int main() {
     Solution solution;
     vector<vector<int> > result = solution.subsets(nums);
     for (int i = 0; i < result.size(); i++) {
-        for (int j = 0; j < result[i].size(); j++)
-            cout << result[i][j] << " ";
-        cout << endl;
+        cout << "[";
+        for (int j = 0; j < result[i].size(); j++) {
+            if (j == result[i].size() - 1 ) cout << result[i][j];
+            else cout << result[i][j] << ", ";
+        }
+        cout << "]" << endl;
     }
     return 0;
 }
