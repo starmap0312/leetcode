@@ -62,6 +62,10 @@
  *       vector<int> v1, v2;
  *       v1.insert(v1.end(), v2.begin(), v2.end());
  *
+ *     insert a value into a vector;
+ *       vector<int> v;
+ *       v.insert(v.begin() + i, value);  // insert value into the i-th position of the vector
+ *
  * - priority_queue: implements maxHeap (default) or minHeap
  *
  *     usages:
@@ -92,6 +96,10 @@
  *           cout << *itr << " ";
  *       }
  *
+ *     set comparison:
+ *       set<int> s1, s2;
+ *       (s1 == s2)           // true <=> s1 and s2 contain identical elements
+ *
  * - hashmap: maintain a set of (key, value) pairs, allowing fast access to value via its key
  *
  *     usages:
@@ -108,6 +116,10 @@
  *       for (map<int, string>::iterator itr = mp.begin(); itr != mp.end(); itr++) {
  *           cout << "(" << itr -> first << ", " << itr -> second << ")" << endl;
  *       }
+ *
+ *     hashmap comparison:
+ *       map<int, string> mp1, mp2;
+ *       (mp1 == mp2)           // true <=> mp1 and mp2 have the same (key, value) pairs
  */
 
 #include <iostream>
@@ -125,7 +137,7 @@ public:
 class Comparison {
 public:
 
-    // defines how Node* a will precede Node* b
+    // defines how Node* a precedes Node* b
     // ex. in minHeap, Node* a precedes Node* b <=> a -> priority > b -> priority
     //     Comparison cmp;
     //     cmp(a, b) should return if a precedes b
@@ -184,6 +196,13 @@ int main() {
     }
     cout << endl;
 
+    // compare two sets
+    set<int> s1, s2;
+    s1.insert(1), s1.insert(3);
+    s2.insert(3), s2.insert(1);
+    // (s1 == s2) is true if and only if the two sets contain identical elements
+    cout << (s1 == s2) << endl;
+
     // hashmap
     map<int, string> mp;
     mp[2] = "two", mp[3] = "three", mp[1] = "one";
@@ -191,5 +210,12 @@ int main() {
     for (map<int, string>::iterator itr = mp.begin(); itr != mp.end(); itr++) {
         cout << "(" << itr -> first << ", " << itr -> second << ")" << endl;
     }
+
+    // compare two hashmaps
+    map<int, string> mp1, mp2;
+    mp1[1] = "one", mp1[2] = "two";
+    mp2[2] = "two", mp2[1] = "one";
+    // (s1 == s2) is true if and only if the two hashmaps have the same (key, value) pairs 
+    cout << (mp1 == mp2) << endl;
     return 0;
 }

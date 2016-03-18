@@ -13,7 +13,7 @@ public:
             children[i] = NULL;
         isWordEnd = false;
     }
-    TrieNode *children[26];
+    TrieNode *children[26]; // each node of the trie can have 26 children
     bool isWordEnd;
 };
 

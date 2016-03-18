@@ -1,6 +1,10 @@
 /* - use dynamic programming to solve the problem efficiently
+ *   let answers[i][j] denote if text[0..i] and pattern[0..j] matches
+ *   we have that
+ *   if pattern[j] == '*', pattern[0..j - 1] can be matched with any text[0..i'], where i' <= i
+ *   if pattern[j] == '?', answers[i][j] = answers[i - 1][j - 1]
  * - allocate and use a two-dimensional array is slightly faster than vector<vector<TYPE> >
- * - ex. int **arr = new int[10][20];  ==> Compile Error !!! 
+ *   ex. int **arr = new int[10][20];  ==> Compile Error !!! 
  *       instead, think of:
  *       int *arr0 = new int[20];
  *       int *arr1 = new int[20];

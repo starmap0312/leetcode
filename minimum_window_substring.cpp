@@ -20,14 +20,14 @@ public:
         int minLength = s.size() + 1, index = -1;
         int i = 0, j = 0;
         while (j < s.size()) {
-            if (target.find(s[j]) != target.end())
+            if (target.find(s[j]) != target.end()) // if target contains [s[j]]
                 mp[s[j]]++;
             while (contains(mp, target)) {
                 if (j - i + 1 < minLength) {
                     index = i;
                     minLength = j - i + 1;
                 }
-                if (target.find(s[i]) != target.end()) {
+                if (target.find(s[i]) != target.end()) { // if target contains s[i]
                     mp[s[i]]--;
                 }
                 i++;
@@ -37,12 +37,14 @@ public:
         if (index == -1) return "";
         return s.substr(index, minLength);
     }
+
     bool contains(unordered_map<char, int> &mp, unordered_map<char, int> &target) {
         for (unordered_map<char, int>::iterator itr = target.begin(); itr != target.end(); itr++) {
             if (mp[itr -> first] < itr -> second) return false;
         }
         return true;
     }
+
     unordered_map<char, int> alphabet(string &s) {
         unordered_map<char, int> result;
         for (int i = 0; i < s.size(); i++)
