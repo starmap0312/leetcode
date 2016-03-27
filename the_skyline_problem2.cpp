@@ -6,13 +6,15 @@
  *                                    heap.top();heap.pop(); 
  *                                 } // use the above to traverse the priority queue
  *                                 priority_queue has no iterator
- * - vector<int> v; ==> sort(v.begin(), v.end(), func)
- *   bool func(const int &a, const int &b) defines when a precedes b, i.e. func()
- *   returns true if a precedes b, otherwise it returns false
+ * - vector<int> v; ==> sort(v.begin(), v.end(), cmp_func)
+ *   bool cmp_func(const int &a, const int &b) defines when a precedes b
+ *   i.e. cmp_func() returns true if a precedes b, otherwise it returns false
  * - priority_queue<int> heap; ==> heap.push(3), heap.pop() to add/remove elements
  *                                 priority queue has no iterator, use the following
- *                                 to traverse the priority queue:
- *                                 while(!heap.empty()) { heap.top(); heap.pop(); }
+ *   traverse the priority queue:
+ *     while(!heap.empty()) {
+ *         heap.top(); heap.pop();
+ *     }
  * - int a, b; ==> use make_pair(a, b) to create a pair<int, int> instance
  * - use "lazy deletion" of the priority queue to solve this problem
  */
