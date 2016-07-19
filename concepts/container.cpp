@@ -13,7 +13,7 @@
  *
  *     while-loop traversal (FIFO):
  *       queue<int> q;
- *       while (q.empty()) {
+ *       while (!q.empty()) {
  *           cout << q.front() << endl;
  *           q.pop();
  *       }
@@ -33,12 +33,12 @@
  *
  *     while-loop traversal (FILO):
  *       stack<int> s;
- *       while (s.empty()) {
+ *       while (!s.empty()) {
  *           cout << s.top() << endl;
  *           s.pop();
  *       }
  *
- * - vector (FILO): can simulate a stack and provide traversals from both sides
+ * - vector (FILO): simulating a stack and providing traversals from both sides
  *
  *     usages:
  *       vector<int> v;
@@ -58,32 +58,48 @@
  *           cout << v[i] << " ";
  *       }
  *
- *     append one vector to the end of another vector:
+ *       vector<int> v;
+ *       for (int i = v.size() - 1; i >= 0; i--) {
+ *           cout << v[i] << " ";
+ *       }
+ *
+ *     concatenation: append one vector to the end of the other 
  *       vector<int> v1, v2;
  *       v1.insert(v1.end(), v2.begin(), v2.end());
  *
- *     insert a value into a vector;
+ *     insertion: insert a value into a vector
  *       vector<int> v;
  *       v.insert(v.begin() + i, value);  // insert value into the i-th position of the vector
  *
  * - priority_queue: implements maxHeap (default) or minHeap
  *
  *     usages:
- *       priority_queue<int> maxHeap;
+ *       priority_queue<int> maxHeap; // default
  *       priority_queue<int, vector<int>, greater<int> > minHeap;
- *       // a heap of Node pointers with a customized Comparison operator
+ *       // a heap of Node pointers with a Comparison callable object (customized precedences) 
  *       priority_queue<Node*, vector<Node*>, Comparison> nodeHeap;
  *
  *     operations: (operations are similar to stack)
  *       maxHeap.push(3);  // push value into the heap
  *       maxHeap.pop();    // pop the top element (min/max) from the heap
+ *       maxHeap.top();    // return the value of the top element (min/max)
+ *
+ *         5      ==> top, pop
+ *      
+ *       4   3    ==> values 3 & 4 precedes value 5
+ *
+ *     while-loop traversal: (pop the elements in a descending/asending order)
+ *       while (!minHeap.empty()) {
+ *           cout << minHeap.top() << " ";
+ *           minHeap.pop();
+ *       }
  *
  * - set: maintain a set of elements, usually used to check if the existence of an
  *        element in the set (ex. a set of visited nodes)
  *
  *     usages:
  *       set<int> s;           // ordered set, s.begin() points to the smallest value
- *       unordered_set<int> s; // unordered set
+ *       unordered_set<int> s; // unordered set (better performance if order is not important)
  *
  *     operations:
  *       s.insert(4);         // insert an element 4 into the set
@@ -96,28 +112,30 @@
  *           cout << *itr << " ";
  *       }
  *
- *     set comparison:
+ *     set comparison: (element-wise comparison)
  *       set<int> s1, s2;
  *       (s1 == s2)           // true <=> s1 and s2 contain identical elements
  *
  * - hashmap: maintain a set of (key, value) pairs, allowing fast access to value via its key
  *
  *     usages:
- *       map<int, string> mp; // ordered hashmap, mp.begin() points to the smallest key
+ *       map<int, string> mp;           // ordered hashmap, mp.begin() points to the element with the smallest key
  *       unordered_map<int, string> mp; // unordered hashmap 
  *
  *     operations:
- *       mp[3] = "three";       // store a pair of (3, "three") into the hashmap
+ *       mp[3] = "three";       // insert a pair of (3, "three") into the hashmap
  *       mp.erase(4);           // delete element with key 4 from the hashmap
  *       mp.erase(itr);         // delete the element pointed by itr
  *       mp.find(3) == v.end(); // find if the key is in the hashmap
+ *       itr -> first           // the key of the element pointed by itr
+ *       itr -> second          // the value of the element pointed by itr
  *
  *     for-loop traversal:
  *       for (map<int, string>::iterator itr = mp.begin(); itr != mp.end(); itr++) {
  *           cout << "(" << itr -> first << ", " << itr -> second << ")" << endl;
  *       }
  *
- *     hashmap comparison:
+ *     hashmap comparison: (element-wise comparison)
  *       map<int, string> mp1, mp2;
  *       (mp1 == mp2)           // true <=> mp1 and mp2 have the same (key, value) pairs
  */
@@ -128,32 +146,30 @@
 #include <set>
 #include <map>
 
+using namespace std;
+
 class Node {
 public:
     Node(int v, int p) : value(v), priority(p) { }
     int value, priority;
 };
 
-class Comparison {
+class Comparison { // class of a callable object for the precedences of Node objects
 public:
-
     // defines how Node* a precedes Node* b
-    // ex. in minHeap, Node* a precedes Node* b <=> a -> priority > b -> priority
-    //     Comparison cmp;
-    //     cmp(a, b) should return if a precedes b
+    //   Comparison cmp;
+    //   cmp(a, b) should return if a precedes b
+    //   ex. in minHeap, Node* a precedes Node* b <=> a -> priority > b -> priority
     bool operator()(Node *a, Node *b) {
         return a -> priority > b -> priority;
     }
 };
-
-using namespace std;
 
 int main() {
     // vector
     vector<int> v;
     v.push_back(1), v.push_back(2), v.push_back(3);
     cout << "vector: " << v.back() << " " << v.front() << endl;
-
 
     // priority_queue: maxHeap
     priority_queue<int> maxHeap;
@@ -165,7 +181,7 @@ int main() {
     }
     cout << endl;
 
-    // priority_queue: minHeap
+    // priority_queue: minHeap (key a precedes key b <=> the node of key a is a child of the node of key b)
     priority_queue<int, vector<int>, greater<int> > minHeap;
     minHeap.push(3), minHeap.push(1), minHeap.push(2);
     cout << "minHeap: ";
@@ -175,7 +191,8 @@ int main() {
     }
     cout << endl;
 
-    // priority_queue: nodeHeap (a heap of node pointers)
+    // priority_queue: a heap of node pointers
+    //   need a callable object for deciding the precedences of node pointers
     priority_queue<Node*, vector<Node*>, Comparison> nodeHeap;
     nodeHeap.push(new Node(3, 1));
     nodeHeap.push(new Node(2, 2));
