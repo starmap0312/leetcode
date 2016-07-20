@@ -41,6 +41,7 @@ public:
         stack<TreeNode *> q;
         TreeNode *cur = root;
         while (true) {
+            // push all the nodes in the leftmost path to the stack
             while (cur != NULL) {
                 q.push(cur);
                 cur = cur -> left;
@@ -54,8 +55,7 @@ public:
         return result;
     }
 
-    // postorder is the reversion of the preorder traversal
-    // we revert the traversal and uses a stack for storing the output
+    // we revert the preorder traversal and uses another stack for storing the output
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> result;
         if (root == NULL) return result;

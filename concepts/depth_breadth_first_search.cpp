@@ -1,23 +1,25 @@
-/* - Depth-First Search (DFS): implement the DFS algorithm using a stack
+/* - Depth-First Search (DFS): implement the DFS algorithm using a stack (nodes to be visited) and
+ *   a set (the remaining nodes)
  *
  *   void DFS(set<Node*> &remaining, Node *root) {
  *       stack<Node*> q;
  *       q.push(root);
  *       remaining.erase(root);
- *       while (!q.empty()) {
- *           Node *node = q.top();
+ *       while (!q.empty()) {      // continue the loop until no more nodes to be visited
+ *           Node *node = q.top(); // take one node out from the remaining set
  *           q.pop();
  *           vector<Node*> nbrs = node -> neighbors;
  *           for (vector<Node*>::iterator itr = nbrs.begin(); itr != nbrs.end(); itr++) {
- *               if (remaining.find(*itr) != remaining.end()) {
- *                   q.push(*itr);
- *                   remaining.erase(*itr);
+ *               if (remaining.find(*itr) != remaining.end()) { // if the neighbor node is not yet visited
+ *                   q.push(*itr);                              // push the neighbor node to the stack
+ *                   remaining.erase(*itr);                     // remove the node from the remaining set
  *               }
  *           }
  *       }
  *   }
  *
- * - Breadth-First Search (BFS): implement the BFS algorithm using a queue
+ * - Breadth-First Search (BFS): implement the BFS algorithm using a queue (nodes to be visited) and
+ *   a set (the remaining nodes)
  *
  *   void BFS(set<Node *> &remaining, Node *root) {
  *       queue<Node *> q;

@@ -26,8 +26,8 @@ int main() {
     int num2 = atoi(str2.c_str());
     cout << num2 << endl;
     // generate random integers
-    srand((unsigned) time(NULL)); // set a time seed
-    cout << rand() << endl; // a random integer between 0 and RAND_MAX (INT_MAX)
+    srand((unsigned) time(NULL));                    // set a time seed
+    cout << rand() << endl;                          // a random integer between 0 and RAND_MAX (INT_MAX)
     const int LOW = 3, HIGH = 17; 
     cout << rand() % (HIGH - LOW + 1) + LOW << endl; // a random integer between LOW and HIGH
     return 0;
