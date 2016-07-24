@@ -1,6 +1,6 @@
 /* - exhaust all possibilities of the removal of parentheses
  *   use branch and bound to improve the time complexity
- *   specifically, start from removing 0 parenthsis to remove more parentheses
+ *   specifically, start from removing 0 parenthesis to remove more parentheses
  *   for each number of removal, exhaust all possible choices of the removed parentheses via 
  *   recursion
  * - note that once the choice of removed parentheses already leads to invalid sentence, return

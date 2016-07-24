@@ -1,5 +1,5 @@
 /* - binary search has two implementations:
- *   use recursion: 
+ *   1) use recursion: 
  *   int search(vector<int> &nums, int start, int end, int target) {
  *       if (start >= end) return -1;
  *       int middle = (start + end) / 2;
@@ -7,7 +7,7 @@
  *       else if (nums[middle] < target) return search(nums, middle + 1, end, target);
  *       else return search(nums, start, middle, target);
  *   }
- *   use iteration:
+ *   2) use iteration:
  *   int search(vector<int> &nums, int start, int end, int target) {
  *       int start = 0, end = nums.size();
  *       while (start < end) {

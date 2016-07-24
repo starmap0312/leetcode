@@ -73,7 +73,7 @@ public:
                 q.push(node -> right);
             }
         }
-        while (!output.empty()) {
+        while (!output.empty()) { // pop elements from the stack 
             result.push_back(output.top());
             output.pop();
         }
