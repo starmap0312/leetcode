@@ -1,4 +1,16 @@
-/* - exhaust all possibilities of choosing the numbers using recursion
+/* problem: compute all possible permutations 
+ * ex. input:
+ *       nums[0..2] = [ 2, 1, 2 ]; 
+ *     answer:
+ *       2 1 2 
+ *       2 2 1 
+ *       1 2 2 
+ *       1 2 2 
+ *       2 2 1 
+ *       2 1 2
+ * use recursion:
+ *   initially, all numbers are unpicked
+ *   pick a number from the unpicked set and continue until all numbers are picked
  */
 #include <iostream>
 #include <vector>
@@ -9,9 +21,8 @@ class Solution {
 public:
     vector<vector<int> > permuteUnique(vector<int>& nums) {
         vector<vector<int> > result;
-        sort(nums.begin(), nums.end());
         vector<int> solution;
-        vector<bool> picked(nums.size(), false);
+        vector<bool> picked(nums.size(), false); // use a bool vector to record if a number is picked
         solve(nums, picked, solution, result);
         return result;
     }
@@ -22,12 +33,12 @@ public:
         if (solution.size() == nums.size()) {
             result.push_back(solution);
         }
-        for (int i = 0; i < nums.size(); i++) {
-            if (picked[i] == false) {
-                picked[i] = true;
+        for (int i = 0; i < nums.size(); i++) { // make all possible choices
+            if (picked[i] == false) {           // if the number nums[i] is not yet picked
+                picked[i] = true;               // make a choice: pick nums[i]
                 solution.push_back(nums[i]);
                 solve(nums, picked, solution, result);
-                solution.pop_back();
+                solution.pop_back();            // unmake the choice
                 picked[i] = false;
             }
         }
@@ -35,7 +46,7 @@ public:
 };
 
 int main() {
-    int a[3] = { 1, 1, 2 };
+    int a[3] = { 2, 1, 2 };
     vector<int> nums(a, a + 3);
     Solution solution;
     vector<vector<int> > result = solution.permuteUnique(nums);

@@ -6,7 +6,8 @@
  *     vector<Node *> neighbors; // adjacency list
  * }; 
  *
- * 1) keep a visited set (visited nodes)
+ * use a set for recording visited nodes
+ *
  * - Depth-First Search (DFS): implement the DFS algorithm using a stack (nodes to be visited)
  *
  *   void DFS(Node *root) {

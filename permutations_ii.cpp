@@ -1,10 +1,9 @@
 /* - recursion based on a picked set and a remaining set
  *   pick a number from the remaining set, and recursively solve the problem
- * - to ensure uniqueness, don't pick the same value consecutively as both will lead to
- *   exactly the same recursions
+ * - to ensure uniqueness, don't pick the same value consecutively as both lead to exactly same recursions
  *   i.e.
- *   we first sort the input vector num
- *   we keep a prev value and bypass those iterations that choose the same value as prev
+ *     we first sort the input vector num
+ *     we keep a prev value and bypass those iterations that choose the same value as prev
  * - the solution is not very efficient as it uses pass-by-value
  */
 #include <iostream>
