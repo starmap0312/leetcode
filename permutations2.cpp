@@ -1,6 +1,6 @@
 /* - solve the problem via dynamic programming
  *   if the subproblem of size n - 1 is solved, the problem of size n can be solved by
- *   appending the last number to any of the positions of each permutation
+ *   inserting the last number to any of the positions of each permutation
  */
 #include <iostream>
 #include <vector>

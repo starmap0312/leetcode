@@ -1,8 +1,26 @@
 /* - exhaust all possible chocies using recursion
- *   first, sort the input sequence
- *   next, determine the next number to be picked between index..max_num
- * - to ensure the uniqueness, we do not pick two consecutive identical numbers
- *   this technique is quite generic and should pay attention to it
+ *     determine the next number to be picked
+ * - to ensure the uniqueness, we
+ *     sort the input sequence and check the value of the index to be picked (see if it's the value first-seen)
+ *     this technique is quite generic and should pay attention to it
+ *
+ *   ex. 0 1 2 3 4 5 6    index
+ *       1 2 2 2 2 3 3 => nums: input values (sorted)
+ *       |           |
+ *       ... index ...
+ *           |.index.|
+ *              ..
+ *   (without the uniqueness constraint)
+ *     we can decide any number from index..nums.size() to be the next index picked
+ *
+ *   (with the uniqueness constraint)
+ *     we bypass those indices with value already seen
+ *     i.e. for i in index..nums.size()
+ *              if (i > index and nums[i] == nums[i - 1]) { // the value is not first seen
+ *                  continue;                               // bypass the iteration
+ *              }
+ *     note that any number of a specific value can be picked as index increments, and no duplicated
+ *       answer will be outputed
  */
 #include <iostream>
 #include <vector>
@@ -14,26 +32,31 @@ public:
     vector<vector<int> > subsetsWithDup(vector<int>& nums) {
         vector<vector<int> > result;
         sort(nums.begin(), nums.end());
-        vector<int> choices;
-        subsets(nums, 0, choices, result);
+        vector<int> solution;
+        subsets(nums, 0, solution, result);
         return result;
     }
 
-    void subsets(vector<int> &nums, int index, vector<int> &choices, vector<vector<int> > &result) {
-        result.push_back(choices);
+    void subsets(vector<int> &nums, int index, vector<int> &solution, vector<vector<int> > &result) {
+        // no base case for this problem, as we are recording every possible subsets
+        result.push_back(solution);
+        // inductive case: pick a number from index..nums.size() and only those numbers first-seen to
+        // ensure uniqueness
         for (int i = index; i < nums.size(); i++) {
-            // bypass if the number is equal to its predecessor (always pick a different number)
-            if (i > index && nums[i] == nums[i - 1]) continue;
-            choices.push_back(nums[i]); // choose nums[i]
-            subsets(nums, i + 1, choices, result);
-            choices.pop_back(); // undo the choice
+            if (i > index && nums[i] == nums[i - 1]) {
+               // do not make the same choice to ensure uniqueness
+                continue;
+            }
+            solution.push_back(nums[i]);            // make a choice
+            subsets(nums, i + 1, solution, result);
+            solution.pop_back();                    // unmake the choice
         }
     }
 };
 
 int main() {
     vector<int> nums;
-    nums.push_back(1), nums.push_back(1);
+    nums.push_back(2), nums.push_back(1), nums.push_back(2);
     Solution solution;
     vector<vector<int> > result = solution.subsetsWithDup(nums);
     for (int i = 0; i < result.size(); i++) {

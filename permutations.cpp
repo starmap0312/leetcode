@@ -1,5 +1,5 @@
 /* - exhaust all possible of choices using recursion
- *   pick a number of the remaining set
+ *   pick a number from the remaining set
  *   add the number to the picked set and remove from the remaining set
  *   recursively solve the problem based on the picked and remaining sets
  * - the approach utilizes many pass-by-values and therefore is not time-efficient

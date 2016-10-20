@@ -8,8 +8,8 @@
  *           output the solution, or save the solution for later output
  *       }
  *       // inductive case
- *       for (every possible choice i) {
- *           // make a choice
+ *       for (every possible choice i) { // if the uniqueness constraint is imposed, we need to bypass some
+ *           // make a choice            // choices, so that no duplicated solutions are outputted
  *           mark choice i as chosen
  *           solve(solution, i);
  *           // unmake the choice

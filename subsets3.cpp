@@ -14,7 +14,7 @@ public:
         sort(nums.begin(), nums.end());
         vector<vector<int> > result;
         result.push_back(vector<int>());
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < nums.size(); i++) { // process the numbers one by one 
             vector<vector<int> > duplicate = result;
             addElement(duplicate, nums[i]);
             result.insert(result.end(), duplicate.begin(), duplicate.end());
@@ -22,7 +22,7 @@ public:
         return result;
     }
 
-    void addElement(vector<vector<int> > &v, int num) {
+    void addElement(vector<vector<int> > &v, int num) { // add num to all the vectors of v
         for (int i = 0; i < v.size(); i++) {
             v[i].push_back(num);
         }
