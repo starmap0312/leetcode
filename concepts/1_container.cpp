@@ -8,8 +8,8 @@
  *       q.pop();       // pop the front element of the queue
  *       q.front();     // return the value of the front element
  *
- *                back            front
- *       push ->    3       2       1   -> pop
+ *                     back           front
+ *       push ----->    3       2       1   -----> pop
  *
  *     while-loop traversal (FIFO):
  *       queue<int> q;
@@ -28,8 +28,10 @@
  *       s.pop();     // pop the top (back) element of the stack
  *       s.top();     // return the value of the top (back) element
  *
- *                   top/back      bottom/front
- *       push/pop <->   3       2       1
+ *         <------ push/pop
+ *       3 -> top
+ *       2
+ *       1 -> bottom
  *
  *     while-loop traversal (FILO):
  *       stack<int> s;
@@ -49,8 +51,8 @@
  *       v.front();      // return the value of the front element
  *       v.back();       // return the value of the back element
  *
- *                               back            front
- *       push_back/pop_back <->    3       2       1
+ *   front        back
+ *     1     2     3     <----- push_back/pop_back
  *
  *     while-loop traversal from both sides:
  *       vector<int> v;
@@ -74,28 +76,29 @@
  * - priority_queue: implements maxHeap (default) or minHeap
  *
  *     usages:
- *       priority_queue<int> maxHeap; // default
- *       priority_queue<int, vector<int>, greater<int> > minHeap;
- *       // a heap of Node pointers with a Comparison callable object (customized precedences) 
- *       priority_queue<Node*, vector<Node*>, Comparison> nodeHeap;
+ *       priority_queue<int> maxHeap;                             // maxHeap (default)
+ *       priority_queue<int, vector<int>, greater<int> > minHeap; // minHeap
+ *       // a heap of Node pointers with a Precedence callable class (customized precedences) 
+ *       priority_queue<Node*, vector<Node*>, Precedence> nodeHeap;
  *
  *     operations: (operations are similar to stack)
  *       maxHeap.push(3);  // push value into the heap
  *       maxHeap.pop();    // pop the top element (min/max) from the heap
  *       maxHeap.top();    // return the value of the top element (min/max)
  *
- *         5      ==> top, pop
- *      
- *       4   3    ==> values 3 & 4 precedes value 5
+ *     ex. maxHeap
  *
- *     while-loop traversal: (pop the elements in a descending/asending order)
+ *         5    -> top  <------ pop
+ *      
+ *       4   3  -> buttom       (values 3 & 4 precedes value 5)
+ *
+ *     while-loop traversal: (pop the elements in a asending order: minHeap)
  *       while (!minHeap.empty()) {
  *           cout << minHeap.top() << " ";
  *           minHeap.pop();
  *       }
  *
- * - set: maintain a set of elements, usually used to check if the existence of an
- *        element in the set (ex. a set of visited nodes)
+ * - set: maintain a set of elements, usually used to check if the existence of an element in the set (ex. a set of visited nodes)
  *
  *     usages:
  *       set<int> s;           // ordered set, s.begin() points to the smallest value
@@ -154,11 +157,11 @@ public:
     int value, priority;
 };
 
-class Comparison { // class of a callable object for the precedences of Node objects
+class Precedence { // a callable class for the precedences of Node objects
 public:
     // defines how Node* a precedes Node* b
-    //   Comparison cmp;
-    //   cmp(a, b) should return if a precedes b
+    //   Precedence precedence;
+    //     precedence(a, b) should return if a precedes b
     //   ex. in minHeap, Node* a precedes Node* b <=> a -> priority > b -> priority
     bool operator()(Node *a, Node *b) {
         return a -> priority > b -> priority;
@@ -181,7 +184,7 @@ int main() {
     }
     cout << endl;
 
-    // priority_queue: minHeap (key a precedes key b <=> the node of key a is a child of the node of key b)
+    // priority_queue: minHeap (key a precedes key b <=> key a greater than key b) 
     priority_queue<int, vector<int>, greater<int> > minHeap;
     minHeap.push(3), minHeap.push(1), minHeap.push(2);
     cout << "minHeap: ";
@@ -192,8 +195,8 @@ int main() {
     cout << endl;
 
     // priority_queue: a heap of node pointers
-    //   need a callable object for deciding the precedences of node pointers
-    priority_queue<Node*, vector<Node*>, Comparison> nodeHeap;
+    //   need a callable class for deciding the precedences of node pointers
+    priority_queue<Node*, vector<Node*>, Precedence> nodeHeap; // minHeap based on node priority
     nodeHeap.push(new Node(3, 1));
     nodeHeap.push(new Node(2, 2));
     nodeHeap.push(new Node(1, 3));
