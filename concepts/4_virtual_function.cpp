@@ -1,4 +1,6 @@
-/* - overload function: early binding/static binding, which function to call is 
+/* virtual method enables polymorphism
+ *   when use a Base class reference to call a virtual method, the concrete implementation of the method will be called
+ * - overload function: early binding/static binding, which function to call is 
  *   determined at compile time
  * - override function: function is re-defined in derived classes
  * - virtual function: late binding/dynamic binding, which function to call is
@@ -23,13 +25,13 @@ using namespace std;
 
 class Base {
 public:
-    void show() {
+    void show() {                         // without virtual keyword, base class implementation is called when using Base class reference
         cout << "    Base's show" << endl;
     }
-    virtual void virtual_show() {
+    virtual void virtual_show() {         // virtual method: concrete implementation in subclass is called when using Base class reference 
         cout << "    Base's virtual show" << endl;
     }
-    virtual void pure_virtual_show() = 0;
+    virtual void pure_virtual_show() = 0; // pure virtual method: the class is an abstract class
 };
 
 class Derived : public Base {
@@ -37,10 +39,10 @@ public:
     void show() {
         cout << "    Derived's show" << endl;
     }
-    virtual void virtual_show() {
+    virtual void virtual_show() {         // a concrete implementation of virtual method
         cout << "    Derived's virtual show" << endl;
     }
-    virtual void pure_virtual_show() {
+    virtual void pure_virtual_show() {    // a concrete implementation of pure virtual method
         cout << "    Derived's pure virtual show" << endl;
     }
 };
