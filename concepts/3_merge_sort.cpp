@@ -1,19 +1,23 @@
+/* merge sort
+ *   divide and conquer:
+ *   sort nums[i..j]
+ *   1) sort  nums[i..mid-1] and nums[mid..j-1] recursively
+ *   2) merge nums[i..mid-1] and nums[mid..j-1] 
+ */
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-// merge sort
 void merge_sort(vector<int> &nums, int i, int j) {
     // base case
     if (j - i <= 1) return; // if at most one element to be sorted, return immediately
-    int mid = (i + j) / 2;
 
     // inductive case
-    // divide and conquer: recursively sort nums[i..mid-1] and nums[mid..j-1] respectively
+    int mid = (i + j) / 2;
     merge_sort(nums, i, mid);
     merge_sort(nums, mid, j);
-    // merge the two sorted numbers of nums[i..mid-1] and nums[mid..j-1]
+    // merge sorted nums[i..mid-1] and sorted nums[mid..j-1]
     int k1 = i, k2 = mid;
     vector<int> sorted;
     while (k1 < mid || k2 < j) {
@@ -33,6 +37,7 @@ void merge_sort(vector<int> &nums, int i, int j) {
             }
         }
     }
+    // copy sorted array to nums[i..j]
     for (int k = 0; k < sorted.size(); k++) {
         nums[i + k] = sorted[k]; 
     }
