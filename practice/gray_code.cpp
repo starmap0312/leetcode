@@ -5,11 +5,11 @@
  *         1
  *       the sequence of gray code of length 2
  *       1) append 0 to the front of the sequence: [0, 1]
- *         (0) 0
- *         (0) 1
+ *         (0) 0 == 0
+ *         (0) 1 == 1
  *       2) append 1 to the front of the sequence, but in a reversed order: [1, 0]
- *         (1) 1
- *         (1) 0
+ *         (1) 1 == 3
+ *         (1) 0 == 2
  * - c++ assign operator, i.e. std::vector::operator=
  *     assign and replace its current contents and modify its size accordingly
  *     time complexity: linear
