@@ -15,8 +15,8 @@
  *      ex. in windows, an application may supply a reference to a specific custom
  *          callback funtion for the operating system to call, in response to mouse
  *          clicks or key presses)
- * - an async callback should be invoked by a main loop or central dispatch mechanism
- *   directly, i.e. there should not be unnecessary frames on the callback-invoking
+ * - an async callback should be invoked by a main loop or central dispatch mechanism directly
+ *     i.e. there should not be unnecessary frames on the callback-invoking
  *   thread's stack, especially if those frames might hold locks
  */
 #include <iostream>
@@ -27,15 +27,16 @@ typedef void (*CALLBACK) (int);
 
 class MyClass {
     // a class with a callback function pointer
-    // the class provides a setter method to register any callback function and 
-    // provides a template method to use the callback function
+    // the class provides a setter method to register any callback function
+    // it also provides a template method to use the callback function
 
 public:
     MyClass() : funcPtr(NULL) { }
-    void setCallback(CALLBACK fp) { funcPtr = fp; }
-    void run() {
-        // a template method that uses the callback function
-        if (funcPtr != NULL) (*funcPtr)(0);
+    void setCallback(CALLBACK fp) {         // pass in the callback function pointer
+        funcPtr = fp;
+    }
+    void call(int num) {                           // a method that uses the callback function 
+        if (funcPtr != NULL) (*funcPtr)(num); // synchronous callback: invoke immediately and wait for the execution
     }
 
 private:
@@ -43,12 +44,14 @@ private:
 };
 
 void func(int i) {
-    cout << "a user-defined callback function: " << i << endl;
+    cout << "executing the callback function: " << i << endl;
 }
 
 int main() {
     MyClass myClass;
     myClass.setCallback(func);
-    myClass.run(); // synchronous callback: invoke immediately and wait for the execution
+    myClass.call(1); // synchronous callback: invoke immediately and wait for the execution
+    myClass.call(2); // synchronous callback: invoke immediately and wait for the execution
+    myClass.call(3); // synchronous callback: invoke immediately and wait for the execution
     return 0;
 }
