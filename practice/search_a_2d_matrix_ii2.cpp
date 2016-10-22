@@ -1,8 +1,7 @@
 /* - the previous solution exceeds the time limit of leetcode
- *   one slight improvement is to reduce trivail recursions when startX = midX or
- *   startY = midY
- *   in these cases, only the elements of one row or column are searched, and therefore
- *   instead of solving them in the recursion, we write simple while-loops to find target
+ *   one slight improvement is to reduce trivail recursions when startX = midX or startY = midY
+ *   in these cases, only the elements of one row or column are searched
+ *   therefore, instead of solving them in the recursion, we write simple while-loops to find target
  */
 #include <iostream>
 #include <vector>

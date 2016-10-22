@@ -19,16 +19,16 @@ public:
     }
 
     void generate(int budget, int numLeft, vector<char> &solution, vector<string> &parentheses) {
-        if (budget == 0 && numLeft == 0) { // base case
-            parentheses.push_back(convertToString(solution));
+        if (budget == 0 && numLeft == 0) { // base case: if the budget is consumed and all left parentheses are paired up
+            parentheses.push_back(convertToString(solution)); // then we obtain a valid solution
             return;
         }
-        if (budget > 0) {
+        if (budget > 0) {  // choice 1: append a '(', only if there are some budget left
             solution.push_back('(');
             generate(budget - 1, numLeft + 1, solution, parentheses);
             solution.pop_back();
         }
-        if (numLeft > 0) {
+        if (numLeft > 0) { // choice 2: append a ')', only if there are some left parentheses un-paired
             solution.push_back(')');
             generate(budget, numLeft - 1, solution, parentheses);
             solution.pop_back();

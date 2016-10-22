@@ -1,15 +1,15 @@
 /* - the problem can be solved via recursion:
  *   the algorithm exhausts all combinations using recursion
  *   ex. k = 3, n = 9
- *       suppose that we have picked two numbers: [1, 2] and about to pick the next number
- *       use a for-loop to iterate all the choices of the next number
- *       the for-loop picks a number from start to end
+ *       suppose that we have picked two numbers: [1, 2]
+ *       use a for-loop to iterate all possibilities of the next number
+ *       pick a number from [start, end]
  *
  *       [1, 2] +          3,         4,          5,           6
  *
  *                     start                                 end
  *                        ||                                  ||
- *                    (1 + 2)                         (9 - 1 - 2)
+ *                    (2 + 1)                         (9 - 1 - 2)
  */
 #include <iostream>
 #include <vector>

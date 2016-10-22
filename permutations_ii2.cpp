@@ -37,6 +37,7 @@ public:
         if (solution.size() == nums.size()) {
             result.push_back(solution);
         }
+        // inductive case
         int prev = -1;
         for (int i = 0; i < nums.size(); i++) { // make all possible choices
             if (picked[i] == false) {           // if the number nums[i] is not yet picked

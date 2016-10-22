@@ -7,22 +7,22 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > combine(int n, int k) {
+    vector<vector<int> > combine(int n, int k) { // choose k out of 1..n
         vector<vector<int> > result;
         vector<int> solution;
-        find(solution, 1, n, k, result);
+        find(1, n, k, solution, result);
         return result;
     }
 
-    void find(vector<int> &solution, int start, int n, int k, vector<vector<int> >&result) {
+    void find(int start, int end, int k, vector<int> &solution, vector<vector<int> >&result) {
         // base case
         if (k == 0) {
             result.push_back(solution);
         }
         // recursive case
-        for (int i = start; i <= n; i++) {
+        for (int i = start; i <= end; i++) { // choose next number from [start, end]
             solution.push_back(i);
-            find(solution, i + 1, n, k - 1, result);
+            find(i + 1, end, k - 1, solution, result);
             solution.pop_back();
         }
     }
