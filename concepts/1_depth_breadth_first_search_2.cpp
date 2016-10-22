@@ -1,11 +1,4 @@
 /* 
- * class Node {
- * public:
- *     Node (int v) : value(v) { }
- *     int value;
- *     vector<Node *> neighbors; // adjacency list
- * }; 
- *
  * use a set for recording visited nodes
  * - Depth-First Search (DFS): implement the DFS algorithm using a stack (nodes to be visited)
  * - Breadth-First Search (BFS): implement the BFS algorithm using a queue (nodes to be visited)
@@ -26,10 +19,10 @@ public:
     int value;
 };
 
-void BFS(Node *root) {
+void BFS(Node *start) {
     set<Node *> visited;
     queue<Node *> q;
-    q.push(root);
+    q.push(start);
     while (!q.empty()) {
         Node *node = q.front();
         q.pop();
@@ -47,10 +40,10 @@ void BFS(Node *root) {
     cout << endl;
 }
 
-void DFS(Node *root) {
+void DFS(Node *start) {
     set<Node *> visited;
     stack<Node*> q;
-    q.push(root);
+    q.push(start);
     while (!q.empty()) {
         Node *node = q.top();
         q.pop();
