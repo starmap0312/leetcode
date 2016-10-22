@@ -26,11 +26,26 @@ public:
             TreeNode *node = q.top();
             q.pop();
             result.push_back(node -> val);
-            if (node -> right != NULL) {
-                q.push(node -> right);
-            }
-            if (node -> left != NULL) {
-                q.push(node -> left);
+            if (node -> right != NULL) q.push(node -> right);
+            if (node -> left != NULL) q.push(node -> left);
+        }
+        return result;
+    }
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> result;
+        if (root == NULL) return result;
+        stack<TreeNode *> q;
+        q.push(root);
+        while (!q.empty()) {       // each node contains an additional field, i.e. visited
+            TreeNode *node = q.top();
+            if (!node -> visited) { // if visit the node for the first time
+                if (node -> left != NULL) q.push(node -> left);
+                node -> visited = true;
+            } else {               // if the node is already visited, meaning that its left subtree is done with traversal
+                result.push_back(node -> val);
+                q.pop();           // a node is popped out only if its left subtree is done with traversal
+                if (node -> right != NULL) q.push(node -> right);
             }
         }
         return result;
@@ -67,7 +82,7 @@ public:
         return result;
     }
 
-    vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> inorderTraversal1(TreeNode* root) {
         vector<int> result;
         if (root == NULL) return result;
         stack<TreeNode *> q;
@@ -143,6 +158,12 @@ int main() {
     root -> right = new TreeNode(2);
     root -> right -> left = new TreeNode(3);
     root -> right -> right = new TreeNode(4);
+    root -> right -> left -> left = new TreeNode(5);
+    root -> right -> left -> right = new TreeNode(6);
+    //    1
+    //      2
+    //    3   4
+    //  5   6
     Solution solution;
     vector<int> rc = solution.preorderTraversal(root);
     cout << "solution.preorderTraversal:  ";
@@ -150,7 +171,7 @@ int main() {
         cout << rc[i] << " ";
     cout << endl;
     cout << "solution.inorderTraversal:   ";
-    rc = solution.inorderTraversal3(root);
+    rc = solution.inorderTraversal(root);
     for (int i = 0; i < rc.size(); i++)
         cout << rc[i] << " ";
     cout << endl;

@@ -28,30 +28,30 @@ using namespace std;
 class TreeNode {
 public:
     int val;
+    bool visited;
     TreeNode *left;
     TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+    TreeNode(int x) : val(x), left(NULL), right(NULL), visited(false) { }
 };
 
 class Solution {
 private:
-    TreeNode* initializeStack(stack<TreeNode *> &q, TreeNode *root) {
+    void initializeStack(stack<TreeNode *> &q, TreeNode *root) {
         TreeNode *dummy = new TreeNode(-1);
         dummy -> right = root;
         q.push(dummy);
-        return dummy;
     }
 
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> result;
         stack<TreeNode *> q;
-        TreeNode *dummy = initializeStack(q, root);
+        initializeStack(q, root);
         while (!q.empty()) {
             TreeNode *itr = q.top();
             q.pop();
             itr = itr -> right;
-            while (itr != NULL) { // push all the nodes in the leftmost path of the right child of itr to stack
+            while (itr != NULL) {             // push all the nodes in the leftmost path of the right child of itr to stack
                 result.push_back(itr -> val); // output the node before pushing to stack
                 q.push(itr);
                 itr = itr -> left;
@@ -63,7 +63,7 @@ public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> result;
         stack<TreeNode *> q;
-        TreeNode *dummy = initializeStack(q, root);
+        initializeStack(q, root);
         while (!q.empty()) {
             TreeNode *itr = q.top();
             result.push_back(itr -> val); // output the node when it is about to be poped out of the stack
@@ -74,28 +74,30 @@ public:
                 itr = itr -> left;
             }
         }
-        return vector<int> (result.begin() + 1);
+        result.erase(result.begin());     // remove value of the first dummpy node
+        return result; 
     }
 
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> result;
         stack<TreeNode *> q;
-        TreeNode *dummy = initializeStack(q, root);
-        q.push(dummy);
+        initializeStack(q, root);
         while (!q.empty()) {
             TreeNode *itr = q.top();
-            q.pop();
-            if (q.empty() || q.top() != itr) {
+            if (!itr -> visited) {
+                itr -> visited = true;
+                itr = itr -> right;
+                while (itr != NULL) {
+                    q.push(itr);
+                    itr = itr -> left;
+                }
+            } else {
                 result.push_back(itr -> val);
-                continue;
-            }
-            itr = itr -> right;
-            while (itr != NULL) {
-                q.push(itr), q.push(itr);
-                itr = itr -> left;
+                q.pop();                 // pop out the element only when the node is visited (its left subtree is done with traversal)
             }
         }
-        return vector<int> (result.begin() + 1);
+        result.erase(result.end() - 1);   // remove value of the first dummpy node
+        return result; 
     }
 };
 
@@ -103,15 +105,25 @@ int main() {
     TreeNode *root = new TreeNode(1);
     root -> right = new TreeNode(2);
     root -> right -> left = new TreeNode(3);
+    root -> right -> right = new TreeNode(4);
+    root -> right -> left -> left = new TreeNode(5);
+    root -> right -> left -> right = new TreeNode(6);
+    //    1
+    //      2
+    //    3   4
+    //  5   6
     Solution solution;
+    cout << "solution.preorderTraversal:  ";
     vector<int> rc = solution.preorderTraversal(root);
     for (int i = 0; i < rc.size(); i++)
         cout << rc[i] << " ";
     cout << endl;
+    cout << "solution.inorderTraversal:   ";
     rc = solution.inorderTraversal(root);
     for (int i = 0; i < rc.size(); i++)
         cout << rc[i] << " ";
     cout << endl;
+    cout << "solution.postorderTraversal: ";
     rc = solution.postorderTraversal(root);
     for (int i = 0; i < rc.size(); i++)
         cout << rc[i] << " ";
