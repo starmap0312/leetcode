@@ -1,26 +1,34 @@
 /* - sorting
  *   example 1) sort a vector of integers
- *      vector<int> v;
- *      sort(v.begin(), v.end()); // in an ascending order (default)
- *      sort(v.begin(), v.end(), greater<int>()); // in a descending order
- *      a) pass in a callbable object
- *         ex. greater<int> cmp;
- *             cmp(a, b) returns true <=> a > b (a precedes b)
- *      b) pass in a method
- *         ex. bool precedes(int, int);
- *             precedes(a, b) returns true <=> a > b (a precedes b)
- *      c) Note: the construction of a minHeap also needs a callable object as parameter
- *         i.e. priority_queue<int, vector<int>, greater<int> > minHeap;
- *              (key a precedes key b <=> a > b)
- *              priority_queue<int> maxHeap; (default: key a precedes key b <=> a < b)
+ *     vector<int> v;
+ *     sort(v.begin(), v.end()); // in an ascending order (default)
+ *     sort(v.begin(), v.end(), greater<int>()); // in a descending order
+ *     a) pass in a callbable object
+ *        ex. greater<int> cmp;
+ *            cmp(a, b) returns true <=> a > b (a precedes b)
+ *     b) pass in a method
+ *        ex. bool precedes(int, int);
+ *            precedes(a, b) returns true <=> a > b (a precedes b)
+ *     c) Note: the construction of a minHeap also needs a callable object as parameter
+ *        i.e. priority_queue<int, vector<int>, greater<int> > minHeap;
+ *             (key a precedes key b <=> a > b)
+ *             priority_queue<int> maxHeap; (default: key a precedes key b <=> a < b)
  *
  *   example 2) sort a vector of objects
- *      vector<Node *> nodes;
- *      bool precedes(Node *a, Node *b); // define how Node *a precedes Node *b
- *      sort(nodes.begin(), nodes.end(), precedes);
+ *     vector<Node *> nodes;
+ *     bool precedes(Node *a, Node *b); // define how Node *a precedes Node *b
+ *     sort(nodes.begin(), nodes.end(), precedes);
+ *
+ * - find element in vector / set
+ *   example:
+ *     vector<int> v;
+ *     find(v.begin(), v.end(), key) // find() returns v.end() if no key found
+ *     set<int> s;
+ *     find(s.begin(), s.end(), key) // find key in a set takes O(log n)
  */
 #include <iostream>
 #include <vector>
+#include <set>
 
 using namespace std;
 
@@ -75,5 +83,29 @@ int main() {
     for (int i = 0; i < nodes.size(); i++)
         cout << "(" << nodes[i] -> key << ", " << nodes[i] -> value << ") ";
     cout << endl;    
+
+    // example 4: find key in a vector
+    int b[] = { 3, 5, 1, 7, 9 };
+    vector<int> u(b, b + 5);
+    vector<int>::iterator itr = find(u.begin(), u.end(), 7);
+    if (itr != u.end()) {
+        cout << "Found: " << *itr << endl;
+    }
+    itr = find(u.begin(), u.end(), 2);
+    if (itr == u.end()) {
+        cout << "No key found" << endl;
+    }
+
+    // example 5: find key in a set 
+    set<int> s;
+    s.insert(5); s.insert(4); s.insert(1); s.insert(2);
+    set<int>::iterator itr2 = find(s.begin(), s.end(), 2);
+    if (itr2 != s.end()) {
+        cout << "Found: " << *itr2 << endl;
+    }
+    itr2 = find(s.begin(), s.end(), 3);
+    if (itr2 == s.end()) {
+        cout << "No key found" << endl;
+    }
     return 0;
 }

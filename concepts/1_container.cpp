@@ -7,6 +7,7 @@
  *       q.push(4);     // push to the back of the queue
  *       q.pop();       // pop the front element of the queue
  *       q.front();     // return the value of the front element
+ *       q.empty();     // check if the queue is empty
  *
  *                     back           front
  *       push ----->    3       2       1   -----> pop
@@ -27,6 +28,7 @@
  *       s.push(4);   // push to the top (back) of the stack
  *       s.pop();     // pop the top (back) element of the stack
  *       s.top();     // return the value of the top (back) element
+ *       s.empty();   // check if the stack is empty
  *
  *         <------ push/pop
  *       3 -> top
@@ -50,6 +52,7 @@
  *       v.pop_back();   // pop the back element of the vector
  *       v.front();      // return the value of the front element
  *       v.back();       // return the value of the back element
+ *       v.empty();      // check if the vector is empty
  *
  *   front        back
  *     1     2     3     <----- push_back/pop_back
@@ -85,6 +88,7 @@
  *       maxHeap.push(3);  // push value into the heap
  *       maxHeap.pop();    // pop the top element (min/max) from the heap
  *       maxHeap.top();    // return the value of the top element (min/max)
+ *       maxHeap.empty();  // check if the priority_queue is empty
  *
  *     ex. maxHeap
  *
@@ -109,6 +113,7 @@
  *       s.erase(4);          // delete element 4 from the set
  *       s.erase(itr);        // delete the element pointed by itr
  *       s.find(4) == s.end() // find if element 4 is in the set
+ *       s.empty();           // check if the set is empty
  *
  *     for-loop traversal:
  *       for(set<int>::iterator itr = s.begin(); itr != s.end(); itr++) {
@@ -130,8 +135,9 @@
  *       mp.erase(4);           // delete element with key 4 from the hashmap
  *       mp.erase(itr);         // delete the element pointed by itr
  *       mp.find(3) == v.end(); // find if the key is in the hashmap
- *       itr -> first           // the key of the element pointed by itr
- *       itr -> second          // the value of the element pointed by itr
+ *       itr -> first;          // the key of the element pointed by itr
+ *       itr -> second;         // the value of the element pointed by itr
+ *       mp.empty();            // check if the hashmap is empty
  *
  *     for-loop traversal:
  *       for (map<int, string>::iterator itr = mp.begin(); itr != mp.end(); itr++) {
@@ -141,6 +147,28 @@
  *     hashmap comparison: (element-wise comparison)
  *       map<int, string> mp1, mp2;
  *       (mp1 == mp2)           // true <=> mp1 and mp2 have the same (key, value) pairs
+ *
+ * - string
+ *
+ *     usages:
+ *       string str = "0123456789";
+ *
+ *     operations:
+ *       str.find('3', 3);          // find if 'a' appears in suffix str[3...]
+ *       str.find("456", 3);        // find if "abc" appears in suffix str[3...], str.find("abc", 3) == string::npos if not found
+ *       str.substr(i, len);        // create a substring of str[i...i + len - 1]
+ *       str.c_str();               // convert into a C-style string
+ *
+ * - pair
+ *
+ *     usages:
+ *
+ *       pair<int, string> p;       // to accesss, use p.first, p.second
+ *
+ *     operations:
+ *
+ *       pair<int, string> p(3, "012"); 
+ *       pair<int, string> p = make_pair(3, "012");
  */
 
 #include <iostream>
@@ -237,5 +265,18 @@ int main() {
     mp2[2] = "two", mp2[1] = "one";
     // (s1 == s2) is true if and only if the two hashmaps have the same (key, value) pairs 
     cout << (mp1 == mp2) << endl;
+
+    // find substring
+    string str = "0123456789";
+    int pos = str.find("456", 2);
+    cout << "Found 456 at position: " << pos << endl;
+    pos = str.find("456", 5);
+    cout << "No substring found: " << pos << endl;
+
+    // pair
+    pair<int, string> p1(3, "012"); 
+    pair<int, string> p2 = make_pair(3, "012");
+    cout << "(" << p1.first << ", " << p1.second << ")" << endl;
+    cout << "(" << p2.first << ", " << p2.second << ")" << endl;
     return 0;
 }

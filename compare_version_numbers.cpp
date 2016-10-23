@@ -1,7 +1,5 @@
-/* - string s; ==> s.find('a', 3) to find if char 'a' appears in the substring of s starting 
- *                 from index 3
- *                 s.find("abc", 3) to find if string "abc" appears in the substring of s starting
- *                 from index 3
+/* - string s; ==> s.find('a', 3) to find if char 'a' appears in the substring of s starting from index 3
+ *                 s.find("abc", 3) to find if string "abc" appears in the substring of s starting from index 3
  */
 #include <iostream>
 #include <vector>

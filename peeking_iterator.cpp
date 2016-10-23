@@ -1,7 +1,6 @@
-/* - virtual desctructor: when calls a virutal function from a base class pointer, the compiler
- *   will call the corresponding function in the derived class of that instance 
- *   therefore, virtual destructor is useful when you use base class pointer to manipulate the
- *   instance but the desctruction of the derived class is also important (prevent resource leak)
+/* - virtual desctructor:
+ *   when calls a virutal function from a base class pointer, the compiler will call the actual implementation in the derived class
+ *   therefore, virtual destructor is useful when the desctruction of the derived class is important (prevent resource leak)
  *   ex. Base *ptr = new Derived();  <== creation of a derived class instance but use 
  *                                       a base pointer to manipulate the instance
  *       // do some work with the base pointer: ptr
