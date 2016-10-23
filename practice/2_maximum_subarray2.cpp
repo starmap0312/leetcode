@@ -1,6 +1,6 @@
 /* - the problem can be solved via dynamic programming:
- *   let maxSum[i] denote the sum of maximum subarray ending at position i
- *   we have that maxSum[i + 1] = max(maxSum[i] + nums[i + 1], 0)
+ *   let maxSum[i] be the sum of maximum subarray ending at position i
+ *   note that: maxSum[i + 1] = max(maxSum[i] + nums[i + 1], 0)
  */
 #include <iostream>
 #include <vector>

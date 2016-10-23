@@ -39,7 +39,7 @@ public:
         int value = node -> val;
         q.pop();
         TreeNode *itr = node -> right;
-        while (itr != NULL) { // push nodes of the leftmost path to the stack
+        while (itr != NULL) {     // push nodes of the leftmost path to the stack
             q.push(itr);
             itr = itr -> left;
         }

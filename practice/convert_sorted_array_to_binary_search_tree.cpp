@@ -1,4 +1,4 @@
-/* - the problem can be solved via dynamic programming:
+/* - the problem can be solved via recursion:
  *   first, decide the root of the tree, which has the middle value of the sorted array
  *   next, construct the left and right subtrees recursively
  */

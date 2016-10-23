@@ -1,4 +1,12 @@
-/* - use a doubly-linked list and a hashmap to allow quick removal and changes of nodes
+/* - use a doubly-linked list: (removal of a node from the list is easy)
+ *   ex.
+ *     3 <-> (1) <-> 2 <-> 4  --> to remove 1 from the list
+ *     3 <-> 2 <-> 4
+ * - use a hashmap to allow quickly locates a node in the list 
+ *     3  <->  2  <->  4   --> nodes
+ *     |       |       |
+ *     |       |       |
+ *   mp[3]   mp[2]   mp[4] --> hashmap: maps key to nodes
  */
 #include <iostream>
 #include <map>
@@ -20,7 +28,7 @@ public:
     }
     
     int get(int key) {
-        if (mp.find(key) != mp.end()) {
+        if (mp.find(key) != mp.end()) { // if key is found in hashmap, remove the node from the list and re-insert to head
             Node *found = mp[key];
             removeNode(found);
             setHead(found);
@@ -31,18 +39,15 @@ public:
     
     void set(int key, int value) {
         if (size == 0) return;
-        // if not in the map, create a new node and push it to the head of the list
-        if (mp.find(key) == mp.end()) {
+        if (mp.find(key) == mp.end()) { // if key is not found in hashmap, insert the key to hashmap and the node to the list head
             Node *node = new Node(key, value);
-            if (mp.size() >= size) {
+            if (mp.size() >= size) {    // if the cache is full, remove the list tail before the insertion
                 mp.erase(tail -> key);
                 removeNode(tail);
-                //delete tail;
             }
             mp[key] = node;
             setHead(node);
-        } else {
-        // if in the map, identify the node, update its value, and put it to the head 
+        } else {                        // if key is found in hashmap, remove the node from the list and re-insert to the head
             Node *found = mp[key];
             found -> value = value;
             removeNode(found);

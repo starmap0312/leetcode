@@ -1,7 +1,6 @@
-/* - the algorithm uses O(1) space: by advancing two pointers at the same time, one takes a step
- *   and the other takes two steps in the linked list at each iteration
- *   if there exists a cycle in the linked list, then two pointers will arrive at the same node
- *   at some point of time
+/* - an O(1) space solution
+ *   advance two pointers at the same time, one takes a step and the other takes two steps 
+ *   if there exists a cycle, then the two pointers will arrive at the same node
  *   otherwise, the second pointer will first reach the end of the linked list
  */
 #include <iostream>
@@ -21,12 +20,14 @@ public:
         if (head == NULL) return false;
         ListNode *itrOne = head, *itrTwo = head -> next;
         while (itrTwo != NULL) {
-            if (itrOne == itrTwo) return true;
-            itrOne = itrOne -> next;
-            if (itrTwo -> next == NULL) break;
+            if (itrOne == itrTwo) {            // if two pointers meet at some point, return true (i.e. has cycle)
+                return true;
+            }
+            itrOne = itrOne -> next;           // advance itrOne by one step
+            if (itrTwo -> next == NULL) break; // advance itrTwo by two steps
             itrTwo = itrTwo -> next -> next;
         }
-        return false;
+        return false;                          // return false (i.e. no cycle)
     }
 };
 

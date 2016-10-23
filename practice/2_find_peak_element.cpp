@@ -1,9 +1,8 @@
-/* - at first glance, it seems that the problem has a trivial lowerbound, which is O(n), 
- *   one may think that to find the peak element, the numbers must be visited at least once
- *   but this is not correct
- * - the problem can be solved in O(log n) time using binary search:
+/* - at first glance, it seems that the problem has a trivial lowerbound: O(n)
+ *     i.e. to find the peak element, the numbers must be visited at least once
+ * - in fact, the problem can be solved in O(log n) time using binary search:
  *   i.e. by checking the middle number with its preceding number
- *        one can determine that at least one half of the numbers that contains the peak element
+ *        at least one half of the numbers contains the peak element
  *   ex.                 
  *                       |
  *                   x   |

@@ -1,6 +1,5 @@
-/* - a linked list contains a cycle if and only if one follows the linked list and visits a node
- *   more than once
- * - the algorithm uses a set to keep track of the nodes visited, which takes O(n) space
+/* - a linked list contains a cycle <=> visits a node more than once if following the list
+ * - use a set to keep track of the visited nodes: O(n) space
  */
 #include <iostream>
 #include <set>
@@ -19,12 +18,14 @@ public:
     bool hasCycle(ListNode *head) {
         set<ListNode *> visited;
         ListNode *itr = head;
-        while (itr != NULL) {
-            if (visited.find(itr) != visited.end()) return true; 
+        while (itr != NULL) {                         // traverse the list from the head
+            if (visited.find(itr) != visited.end()) { // if the node is visited, return true (i.e. has cycle)
+                return true; 
+            }
             visited.insert(itr);
             itr = itr -> next;
         }
-        return false;
+        return false;                                 // return false (i.e. no cycle)
     }
 };
 

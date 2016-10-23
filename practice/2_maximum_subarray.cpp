@@ -1,9 +1,5 @@
-/* - the problem can be solved by computing the prefix sums during a scan of the input numbers
- *   using the prefix sums, one can identify the maximum subarrays ending at each position
- *   for example, the maximum subarray ending at position i has a sum equal to the prefix sum
- *   of that position minus the lowest prefix sum before that position
- *   therefore, while computing the prefix sums, we also keep track of the lowest prefix sum
- *   computed so far, and update the sum of the maximum subarray on the fly
+/* - compute the prefix sums on the fly, during a scan of the input numbers
+ *   to find the maximum subarray ending at position i, it suffices to find the minimum prefix sum before position i
  */
 #include <iostream>
 #include <vector>

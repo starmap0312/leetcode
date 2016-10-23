@@ -1,5 +1,5 @@
 /* - an O(n log n)-time algorithm
- * - observe that if point 7 is the right side of the area and is the lower side,
+ * - observe that if point 7 is the right side of the max area and is "the lower side",
  *   we have that point 7 should be paired with point 4 (its upperbound)
  *   1) points 1, 2, 3 are lower than point 7, and hence they are not the candidates
  *   2) points marked with o cannot be the left side, because they have one higher point on the
