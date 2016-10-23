@@ -1,6 +1,6 @@
 /* - the problem can be solved via dynamic programming:
  *   let answers[i][j] denote the minimum path sum from grid[0][0] to grid[i][j]
- *   we have that answers[i][j] = min(answers[i - 1][j], answers[i][j - 1]) + grid[i][j]
+ *   note that: answers[i][j] = min(answers[i - 1][j], answers[i][j - 1]) + grid[i][j]
  * - handle the boundary cases where i = 0 or j = 0
  * - the space can be reduced to O(n) by just maintaining the answers of the previous row
  */

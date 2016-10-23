@@ -1,6 +1,5 @@
 /* - the problem can be solved via dynamic programming:
- *   the permutations of i numbers can be generated using the permutations of the first i - 1 
- *   numbers
+ *   permutations of i numbers can be obtained using permutations of i - 1 numbers
  *   ex.  permutations of 2 numbers
  *          1 2
  *          2 1
