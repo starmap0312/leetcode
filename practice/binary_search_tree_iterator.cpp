@@ -1,8 +1,7 @@
 /* - the problem can solved using an approach similar to binary tree in-order traversal
  *   i.e. 1) push all the nodes of the leftmost path from the root to the stack
  *        2) pop the top element and return its value as the next element
- *           after the pop, if the top element has a right child, push all the nodes of the
- *           leftmost path from the right child to the stack
+ *           if the top element has a right child, push nodes of its the leftmost path to the stack
  */
 #include <iostream>
 #include <vector>
@@ -22,29 +21,27 @@ class BSTIterator {
 public:
     BSTIterator(TreeNode *root) {
         TreeNode *itr = root;
-        while (itr != NULL) {
+        while (itr != NULL) {     // push nodes of the leftmost path to the stack
             q.push(itr);
             itr = itr -> left;
         }
     }
 
-    /** @return whether we have a next smallest number */
+    /* @return whether we have a next smallest number */
     bool hasNext() {
         return !q.empty();
     }
 
-    /** @return the next smallest number */
+    /* @return the next smallest number */
     int next() {
         if (q.empty()) return -1;
         TreeNode *node = q.top();
         int value = node -> val;
         q.pop();
-        if (node -> right != NULL) {
-            TreeNode *itr = node -> right;
-            while (itr != NULL) {
-                q.push(itr);
-                itr = itr -> left;
-            }
+        TreeNode *itr = node -> right;
+        while (itr != NULL) { // push nodes of the leftmost path to the stack
+            q.push(itr);
+            itr = itr -> left;
         }
         return value;
     }

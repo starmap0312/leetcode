@@ -24,16 +24,16 @@ void BFS(Node *start) {
     queue<Node *> q;
     q.push(start);
     while (!q.empty()) {
-        Node *node = q.front();
+        Node *node = q.front();                           // pop the next node from the queue
         q.pop();
-        if (visited.find(node) == visited.end()) {
+        if (visited.find(node) == visited.end()) {        // if the node is not yet visited, mark it as visited
             cout << node -> value << " ";
             visited.insert(node);
-        }
-        vector<Node*> nbrs = node -> neighbors;
-        for (int i = 0; i < nbrs.size(); i++) {           // check all the neighbors of node
-            if (visited.find(nbrs[i]) == visited.end()) { // push all unvisited neighbor nodes to the queue
-                q.push(nbrs[i]);
+            vector<Node*> nbrs = node -> neighbors;
+            for (int i = 0; i < nbrs.size(); i++) {       // push all its unvisited neighbors to the queue
+                if (visited.find(nbrs[i]) == visited.end()) {
+                    q.push(nbrs[i]);
+                }
             }
         }
     }
@@ -45,16 +45,16 @@ void DFS(Node *start) {
     stack<Node*> q;
     q.push(start);
     while (!q.empty()) {
-        Node *node = q.top();
+        Node *node = q.top();                             // pop the next node from the stack
         q.pop();
-        if (visited.find(node) == visited.end()) {
+        if (visited.find(node) == visited.end()) {        // if the node is not yet visited, mark it as visited
             cout << node -> value << " ";
             visited.insert(node);
-        }
-        vector<Node*> nbrs = node -> neighbors;
-        for (int i = 0; i < nbrs.size(); i++) {           // check all the neighbors of node
-            if (visited.find(nbrs[i]) == visited.end()) { // push all unvisited neighbor nodes to the stack 
-                q.push(nbrs[i]);
+            vector<Node*> nbrs = node -> neighbors;
+            for (int i = 0; i < nbrs.size(); i++) {       // push all its unvisited neighbors to the stack
+                if (visited.find(nbrs[i]) == visited.end()) {
+                    q.push(nbrs[i]);
+                }
             }
         }
     }

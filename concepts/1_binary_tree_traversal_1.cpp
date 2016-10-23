@@ -1,23 +1,16 @@
 /* - traverse the tree in a depth-first order
- *     during the traversal, use a stack to remember the nodes whose right subtrees 
- *     not yet been visited
+ *     during the traversal, use a stack to remember the nodes whose right subtrees not yet been visited
  * - intially, the stack contains only one dummy node whose right child is the root
  * - while the stack is not empty:
  *       pop out the top element, say node i
  *       traverse and push to all the nodes in the leftmost path of the right child of node i to the stack
  * - 1) preorder traversal:
- *      output the nodes before pushing the nodes to the stack
+ *      output the node before pushing to the stack
  *   2) inorder traversal:
- *      output node i when pop it out of the stack
+ *      output the node before popping out of the stack
  *   3) postorder traversal:
- *      when node i is to be poped out of the stack for the first time
- *      do not actually pop it out, as we need to output it after the traversal of 
- *      its right subtree is complete
- *      so we can define an additional field in the node structure to acomplish this
- *      alternatively, we can push each node to the stack twice to distinguish
- *      if the node is the first time poped out or its right subtree is traversed
- *      or we can use an additional pointer, say lastVisisted, to remember what is
- *      the last visited node (a more succint and dedicate way)
+ *      node is not poped out of the stack when first visited (use an additional field for node visited) 
+ *      node is popped out when already visited, i.e. it is done with traversal of its left subtree
  */
 #include <iostream>
 #include <vector>
@@ -51,7 +44,7 @@ public:
             TreeNode *itr = q.top();
             q.pop();
             itr = itr -> right;
-            while (itr != NULL) {             // push all the nodes in the leftmost path of the right child of itr to stack
+            while (itr != NULL) {             // push nodes of the leftmost path to the stack
                 result.push_back(itr -> val); // output the node before pushing to stack
                 q.push(itr);
                 itr = itr -> left;
@@ -66,15 +59,15 @@ public:
         initializeStack(q, root);
         while (!q.empty()) {
             TreeNode *itr = q.top();
-            result.push_back(itr -> val); // output the node when it is about to be poped out of the stack
+            result.push_back(itr -> val);     // output the node before popping out of the stack
             q.pop();
             itr = itr -> right;
-            while (itr != NULL) {
+            while (itr != NULL) {             // push nodes of the leftmost path to the stack
                 q.push(itr);
                 itr = itr -> left;
             }
         }
-        result.erase(result.begin());     // remove value of the first dummpy node
+        result.erase(result.begin());         // remove value of dummpy node (the first popped out node)
         return result; 
     }
 
@@ -87,16 +80,16 @@ public:
             if (!itr -> visited) {
                 itr -> visited = true;
                 itr = itr -> right;
-                while (itr != NULL) {
+                while (itr != NULL) {         // push nodes of the leftmost path to the stack
                     q.push(itr);
                     itr = itr -> left;
                 }
             } else {
-                result.push_back(itr -> val);
-                q.pop();                 // pop out the element only when the node is visited (its left subtree is done with traversal)
+                result.push_back(itr -> val); // output the node before popping out of the stack
+                q.pop();                      // node is popped out only when it has been visited (its left subtree is done with traversal)
             }
         }
-        result.erase(result.end() - 1);   // remove value of the first dummpy node
+        result.erase(result.end() - 1);       // remove value of dummpy node (the last popped out node)
         return result; 
     }
 };

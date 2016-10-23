@@ -7,7 +7,7 @@
  *   nodes[2] -> neighbors = [3]
  *   nodes[3] -> neighbors = []
  *
- * use a boolean vector for recording visited nodes (visited[i] == true <=> node i is visited)
+ * use a boolean vector for remembering the visited nodes (visited[i] == true <=> node i is visited)
  * - Depth-First Search (DFS): implement the DFS algorithm using a stack (FILO)
  * - Breadth-First Search (BFS): implement the BFS algorithm using a queue (FIFO)
  *
@@ -32,16 +32,16 @@ void BFS(vector<Node *> &nodes, int start) {
     queue<int> q;
     q.push(start);
     while (!q.empty()) {
-        int index = q.front();
+        int next = q.front();                         // pop the next node index from the queue
         q.pop();
-        if (!visited[index]) {
-            cout << nodes[index] -> value << " ";
-            visited[index] = true;
-        }
-        vector<int> nbrs = nodes[index] -> neighbors;
-        for (int i = 0; i < nbrs.size(); i++) { // check all the neighbor nodes
-            if (!visited[nbrs[i]]) {
-                q.push(nbrs[i]);                // push all unvisited neighbor nodes to the queue
+        if (!visited[next]) {                         // if the node is not yet visited, mark it as visited
+            cout << nodes[next] -> value << " ";
+            visited[next] = true;
+            vector<int> nbrs = nodes[next] -> neighbors;
+            for (int i = 0; i < nbrs.size(); i++) {   // push all its unvisited neighbors to the queue
+                if (!visited[nbrs[i]]) {
+                    q.push(nbrs[i]);
+                }
             }
         }
     }
@@ -49,20 +49,20 @@ void BFS(vector<Node *> &nodes, int start) {
 }
 
 void DFS(vector<Node *> &nodes, int start) {
+    vector<bool> visited(nodes.size(), false);
     stack<int> q;
     q.push(start);
-    vector<bool> visited(nodes.size(), false);
     while (!q.empty()) {
-        int index = q.top();
+        int next = q.top();                           // pop the next index from the queue
         q.pop();
-        if (!visited[index]) {
-            cout << nodes[index] -> value << " ";
-            visited[index] = true;
-        }
-        vector<int> nbrs = nodes[index] -> neighbors;
-        for (int i = 0; i < nbrs.size(); i++) { // check all the neighbor nodes
-            if (!visited[nbrs[i]]) {
-                q.push(nbrs[i]);                // push the indices of all the unvisited neighbor nodes to the stack 
+        if (!visited[next]) {                         // if the node is not yet visited, mark it as visited
+            cout << nodes[next] -> value << " ";
+            visited[next] = true;
+            vector<int> nbrs = nodes[next] -> neighbors;
+            for (int i = 0; i < nbrs.size(); i++) {   // push all its unvisited neighbors to the stack
+                if (!visited[nbrs[i]]) {
+                    q.push(nbrs[i]);
+                }
             }
         }
     }
