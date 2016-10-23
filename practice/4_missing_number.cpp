@@ -15,7 +15,9 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             sum += nums[i];
         }
-        return ((nums.size() * (nums.size() + 1) / 2) - sum);
+        int n = nums.size();
+        int target = (n * (n + 1)) / 2; // target = (0 + 1 + ... + n)
+        return (target - sum);
     }
 };
 

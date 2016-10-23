@@ -2,7 +2,7 @@
  *   ex.
  *     1) update the first two nodes' next pointers
  *        prev        cur
- *        1     2     3      4      5      6
+ *        1     2     3 ---> 4 ---> 5      6
  *        ^     |            ^
  *        |-----|            |
  *                           |
@@ -39,14 +39,13 @@ public:
         head = head -> next;
         while (prev -> next != NULL) {
             prev -> next -> next = prev;
-            if (cur == NULL || cur -> next == NULL) {
-                // handle the update of pointers the last iteration
+            if (cur == NULL || cur -> next == NULL) { // handle the update of pointers at the last iteration
                 prev -> next = cur;
                 break;
             }
             prev -> next = cur -> next;
-            prev = cur; // proceed pointer prev
-            cur = cur -> next; // proceed pointer cur
+            prev = cur;                               // proceed pointer prev
+            cur = cur -> next;                        // proceed pointer cur
             if (cur != NULL) cur = cur -> next;
         }
         return head;
