@@ -39,7 +39,7 @@ public:
         neighbors.push_back(nbr);
     }
 
-    vector<int> nbrs() {
+    vector<int>& nbrs() {
         return neighbors;
     }
 
