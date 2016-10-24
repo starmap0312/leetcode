@@ -1,3 +1,6 @@
+/* - while (exist unvisited node)
+ *     traverse the graph from an unvisited via DFS (use recursion)
+ */
 #include <iostream>
 #include <vector>
 
@@ -51,16 +54,16 @@ class Solution2 {
 public:
     Solution2() {}
 
-    void DFS(int i, vector<Node *> &nodes, vector<bool> &visited) {
+    void DFS(int i, vector<Node> &nodes, vector<bool> &visited) {
         visited[i] = true;                          // mark node i as visited
-        vector<int> nbrs = nodes[i] -> nbrs();
+        vector<int> nbrs = nodes[i].nbrs();
         for (int j = 0; j < nbrs.size(); j++) {     // traverse all node i's neighbors
             if (!visited[nbrs[j]]) {                // if node nbrs[j] is not yet visited
                 DFS(nbrs[j], nodes, visited);       // traverse from node nbrs[j] via DFS recursively
             }
         }
     }
-    int countComponent(vector<Node *> &nodes) {
+    int countComponent(vector<Node> &nodes) {
         int count = 0;                             // number of connected component
         vector<bool> visited(nodes.size(), false); // initially, all nodes are unvisited
         for (int i = 0; i < visited.size(); i++) {
@@ -97,11 +100,11 @@ int main() {
 
     cout << "Method 2: adjacency list and visited vector" << endl;
     // initialize adjacency list: nodes
-    vector<Node *> nodes(5, new Node());
+    vector<Node> nodes(5);
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
             if (a[i][j] == 1) {
-                nodes[i] -> add(j);
+                nodes[i].add(j);
             }
         }
     }
