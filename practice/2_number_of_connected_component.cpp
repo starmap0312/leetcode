@@ -81,6 +81,11 @@ int main() {
         {0, 1, 1, 0, 0},
         {0, 0, 0, 0, 0}
     };
+
+    //  |-- 1 --|
+    //  0       3       4
+    //  |-- 2 --|
+
     cout << "Method 1: adjacency matrix and visited vector" << endl;
     // initialize adjacency matrix: edges
     vector<vector<int> > edges;
