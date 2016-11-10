@@ -1,5 +1,4 @@
-/* - recursive solution has many repeated computation of subproblems, use dynamic programming
- *   to speedup
+/* - recursive solution: many repeated computation of subproblems (use dynamic programming to speedup)
  */
 #include <iostream>
 

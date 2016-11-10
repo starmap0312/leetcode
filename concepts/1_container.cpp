@@ -76,6 +76,11 @@
  *       vector<int> v;
  *       v.insert(v.begin() + i, value);  // insert value into the i-th position of the vector
  *
+ *     initialization:
+ *       vector<bool> v(10, false);
+ *       vector<int> u;
+ *       u = vector<int>(10, 0);
+ *
  * - priority_queue: implements maxHeap (default) or minHeap
  *
  *     usages:
