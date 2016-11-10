@@ -17,7 +17,7 @@
  *                       x  -  x  ==> character 'b' is the only candidate of the fourth character
  *        c  b (a)(c)(d) c (b) c  ==> 'b' is picked and terminate the procedure
  *   output string "acdb" as the answer
- * - the total time required is O(n * k), where is the number of distinct characters
+ * - the total time required is O(n * k), where k is the number of distinct characters
  */
 #include <iostream>
 #include <unordered_map>

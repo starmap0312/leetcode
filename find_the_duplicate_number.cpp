@@ -1,6 +1,5 @@
-/* - to find the duplicate number in range (1 ... n), we first let mid = (1 + n) / 2
- *   observe that the duplicate number must exist in either range (1 ... mid) or
- *   in range (mid + 1 ... n)
+/* - to find the duplicate number in range [1..n], it suffices to find the duplicate number in 
+ *   either range [1..mid] or [mid + 1..n], where mid = (1 + n) / 2
  *   by counting the total number in-between the two ranges, one can determine the duplicate 
  *   number exists in which range.
  *   then, recursively finding the duplicate number in the determined range
