@@ -10,18 +10,21 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         if (prices.size() == 0) return 0;
-        int sum = 0, ind = 0;
+        int profit = 0;
         for (int i = 1; i < prices.size(); i++) {
-            if (prices[i - 1] > prices[i]) {
-                sum += (prices[i - 1] - prices[ind]);
-                ind = i;
+            int diff = prices[i] - prices[i - 1];
+            if (diff > 0) {
+                profit += diff; 
             }
         }
-        sum += (prices[prices.size() - 1] - prices[ind]);
-        return sum;
+        return profit;
     }
 };
 
 int main() {
+    int a[] = {7, 1, 5, 3, 6, 4};
+    vector<int> prices(a, a + 6);
+    Solution solution;
+    cout << solution.maxProfit(prices) << endl;
     return 0;
 }

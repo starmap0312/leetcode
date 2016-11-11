@@ -53,7 +53,7 @@ void quick_sort2(vector<int> &nums, int left, int right) {
     swap(nums[mid], nums[right]);     // swap pivot to the last position
 
     int i = left, j = right - 1;
-    while (i < j) {
+    while (i <= j) {
         while (nums[i] <= pivot) {    // find a number > pivot from left to right
             i++;
         }
@@ -65,9 +65,9 @@ void quick_sort2(vector<int> &nums, int left, int right) {
             i++; j--;
         }
     };
-
-    swap(nums[i], nums[right]);      // swap pivot to its correct position
-
+    if (i <= right) {
+        swap(nums[i], nums[right]);      // swap pivot to its correct position
+    }
     // recursively solve the problem
     quick_sort2(nums, left, i - 1);
     quick_sort2(nums, i + 1, right);
