@@ -16,9 +16,11 @@ public:
         for (int i = 0; i < strs.size(); i++) {
             mp[alphabet(strs[i])]++;
         }
-        for (int i = 0; i < strs.size(); i++)
-            if (mp[alphabet(strs[i])] > 0)
+        for (int i = 0; i < strs.size(); i++) {
+            if (mp[alphabet(strs[i])] > 0) {
                 result.push_back(strs[i]);
+            }
+        }
         return result;
     }
     set<char> alphabet(string s) {

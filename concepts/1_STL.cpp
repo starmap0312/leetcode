@@ -1,7 +1,7 @@
 /* - sorting
  *   example 1) sort a vector of integers
  *     vector<int> v;
- *     sort(v.begin(), v.end()); // in an ascending order (default)
+ *     sort(v.begin(), v.end());                 // in an ascending order (default)
  *     sort(v.begin(), v.end(), greater<int>()); // in a descending order
  *     a) pass in a callbable object
  *        ex. greater<int> cmp;
@@ -107,5 +107,10 @@ int main() {
     if (itr2 == s.end()) {
         cout << "No key found" << endl;
     }
+
+    // example 6: sort chars of a C++-string
+    string word = "cdeeabc";
+    sort(word.begin(), word.end());
+    cout << word << endl;
     return 0;
 }

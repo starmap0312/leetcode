@@ -1,6 +1,7 @@
-/* - implement queue using two stacks: elements are pushed to push_stack. when calling peek()
- *   or pop(), the program checks if pop_stack is empty, if yes, pop elements of push_stack
- *   and push to pop_stack before calling the top() or pop() function of pop_stack
+/* - implement queue using two stacks:
+ *   1) elements are pushed to push_stack
+ *   2) when calling peek() or pop(), the program checks if pop_stack is empty, if yes, pop elements of
+ *      push_stack and push to pop_stack before calling the top() or pop() function of pop_stack
  */
 #include <iostream>
 #include <stack>
@@ -16,16 +17,19 @@ public:
 
     // Removes the element from in front of queue.
     void pop(void) {
-        if (pop_stack.empty())
+        if (pop_stack.empty()) {
             move_elements();
-        if (!pop_stack.empty())
+        }
+        if (!pop_stack.empty()) {
             pop_stack.pop();
+        }
     }
 
     // Get the front element.
     int peek(void) {
-        if (pop_stack.empty())
+        if (pop_stack.empty()) {
             move_elements();
+        }
         return (pop_stack.empty()? 0: pop_stack.top());
     }
 
