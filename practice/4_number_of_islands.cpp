@@ -1,4 +1,4 @@
-/* - 
+/* - the problem can be solved using DFS (number of connected components) 
  */
 #include <iostream>
 #include <vector>

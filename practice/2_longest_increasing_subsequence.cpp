@@ -1,15 +1,14 @@
-/* - traverse the input numbers while maintaining a list of strictly increasing numbers
+/* - illustration 
  *   ex.
- *                     a3
- *                     x
- *
- *                a2             
- *                x
- *         a1   <--------------- o a4
- *         x
- *
- *    replace a2 with a4 in the list
- *    a4 is the smallest number in a list of size 2
+ *         10    9    2    5    3    7  101  18  <== input array
+ *         10
+ *               9
+ *                    2
+ *                    2    5
+ *                    2         3
+ *                    2         3    7
+ *                    2         3    7  101
+ *                    2         3    7       18  <== LIS
  */
 #include <iostream>
 #include <vector>
@@ -19,29 +18,29 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<int> seq;
+        vector<int> LIS;
         for (int i = 0; i < nums.size(); i++) {
-            int index = upperbound(seq, nums[i]);
-            if (seq.size() == index) {
-                seq.push_back(nums[i]);
+            int ub = upperbound(LIS, nums[i]);
+            if (ub == LIS.size()) {
+                LIS.push_back(nums[i]);
             } else {
-                seq[index] = nums[i];
+                LIS[ub] = nums[i];
             }
         }
-        return seq.size();
+        return LIS.size();
     }
 
-    int upperbound(vector<int> &seq, int target) {
-        int start = 0, end = seq.size();
-        while (start < end) {
-            int mid = (start + end) / 2;
-            if (seq[mid] < target) {
-                start = mid + 1;
+    int upperbound(vector<int> &v, int value) {
+        int i = 0, j = v.size();
+        while (i < j) {
+            int mid = (i + j) / 2;
+            if (v[mid] > value) {
+                j = mid;
             } else {
-                end = mid;
+                i = mid + 1;
             }
         }
-        return start;
+        return i;
     }
 };
 

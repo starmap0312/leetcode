@@ -28,10 +28,12 @@ public:
         vector<int> result(1, 0);
         for (int i = 0; i < n; i++) {
              vector<int> next;
-             for (int j = 0; j < result.size(); j++)
+             for (int j = 0; j < result.size(); j++) {
                  next.push_back(result[j]);
-             for (int j = result.size() - 1; j >= 0; j--)
+             }
+             for (int j = result.size() - 1; j >= 0; j--) {
                  next.push_back(result[j] + (1 << i));
+             }
              result = next; // assign the contents of next to result, requiring O(n) time
         }
         return result;

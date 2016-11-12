@@ -1,4 +1,7 @@
-/* - dynamic programming solution 
+/* - the problem can be solved via dynamic programming:
+ *   number of unique BSTs of size k can be obtained using number of unique BSTs of size 0, 1, ..., k - 1
+ * - we choose among 1, 2, ..., k to be the root, once the root is determined:
+ *   note that: number of unique BSTs = product of numbers of unique BSTs of two subtrees
  */
 #include <iostream>
 #include <vector>

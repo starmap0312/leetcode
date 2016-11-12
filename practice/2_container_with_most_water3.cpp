@@ -1,4 +1,7 @@
 /* - an O(n)-time algorithm: improve upon previous solution
+ *   start from outmost lines
+ *   move the line with shorter height inward (so move the line with higher height inward is not beneficial)
+ *   record the best solution on the fly and continue until no more combinations
  */
 #include <iostream>
 #include <vector>

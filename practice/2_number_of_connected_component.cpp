@@ -1,4 +1,6 @@
-/* - while (exist unvisited node)
+/* - the graph is represented by adjacency matrix
+ *   use an additional vector for recording visisted node index
+ * - while (exist unvisited node)
  *     traverse the graph from an unvisited via DFS (use recursion)
  */
 #include <iostream>
@@ -33,6 +35,10 @@ public:
         return count;
     }
 };
+
+/* - the graph is represented by adjacency list
+ *   use an additional vector for recording visisted node index
+ */
 
 class Node {
 public:

@@ -41,10 +41,11 @@ public:
         int start = 0, end = nums.size();
         while (start < end - 1) { // if start == end - 1, return the only one candidate
             int mid = (start + end) / 2;
-            if (nums[mid - 1] < nums[mid])
+            if (nums[mid - 1] < nums[mid]) {
                 start = mid;
-            else
+            } else {
                 end = mid;
+            }
         }
         return start;
     }
