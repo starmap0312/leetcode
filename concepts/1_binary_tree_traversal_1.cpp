@@ -86,7 +86,8 @@ public:
                 }
             } else {
                 result.push_back(itr -> val); // output the node before popping out of the stack
-                q.pop();                      // node is popped out only when it has been visited (its left subtree is done with traversal)
+                q.pop();                      // node is popped out only when it has been visited
+                                              // i.e. its left subtree is done with traversal
             }
         }
         result.erase(result.end() - 1);       // remove value of dummpy node (the last popped out node)

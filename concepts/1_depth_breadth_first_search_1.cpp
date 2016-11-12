@@ -7,7 +7,7 @@
  *   nodes[2] -> neighbors = [3]
  *   nodes[3] -> neighbors = []
  *
- * use a boolean vector for remembering the visited nodes (visited[i] == true <=> node i is visited)
+ * use a boolean vector for recording the visited nodes (visited[i] == true <=> node i is visited)
  * - Depth-First Search (DFS): implement the DFS algorithm using a stack (FILO)
  * - Breadth-First Search (BFS): implement the BFS algorithm using a queue (FIFO)
  *

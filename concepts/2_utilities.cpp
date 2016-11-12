@@ -1,8 +1,8 @@
 /* - to_string(): convert int to string
  *     string s = to_string(123);
  * - atoi(): convert C-style string to int
- *     char str[] = "123";
- *     int num = atoi(str);
+ *     char c_str[] = "123";
+ *     int num = atoi(c_str);
  * - c_str(): convert C++-style string to C-style string
  *     string str = "123";
  *     int num = atoi(str.c_str());

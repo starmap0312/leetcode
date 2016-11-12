@@ -3,13 +3,13 @@
  *     vector<int> v;
  *     sort(v.begin(), v.end());                 // in an ascending order (default)
  *     sort(v.begin(), v.end(), greater<int>()); // in a descending order
- *     a) pass in a callbable object
+ *     a) pass in a callbable "object"
  *        ex. greater<int> cmp;
  *            cmp(a, b) returns true <=> a > b (a precedes b)
- *     b) pass in a method
+ *     b) pass in a method "object"
  *        ex. bool precedes(int, int);
  *            precedes(a, b) returns true <=> a > b (a precedes b)
- *     c) Note: the construction of a minHeap also needs a callable object as parameter
+ *     c) Note: the construction of a minHeap needs a callable object "type" as parameter
  *        i.e. priority_queue<int, vector<int>, greater<int> > minHeap;
  *             (key a precedes key b <=> a > b)
  *             priority_queue<int> maxHeap; (default: key a precedes key b <=> a < b)
