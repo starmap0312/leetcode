@@ -54,8 +54,8 @@
  *       v.back();       // return the value of the back element
  *       v.empty();      // check if the vector is empty
  *
- *   front        back
- *     1     2     3     <----- push_back/pop_back
+ *                               back           front
+ *   push_back/pop_back ----->    3       2       1   -----> front
  *
  *     while-loop traversal from both sides:
  *       vector<int> v;
@@ -91,7 +91,7 @@
  *
  *     operations: (operations are similar to stack)
  *       maxHeap.push(3);  // push value into the heap
- *       maxHeap.pop();    // pop the top element (min/max) from the heap
+ *       maxHeap.pop();    // pop the top element max from the heap
  *       maxHeap.top();    // return the value of the top element (min/max)
  *       maxHeap.empty();  // check if the priority_queue is empty
  *
@@ -107,7 +107,8 @@
  *           minHeap.pop();
  *       }
  *
- * - set: maintain a set of elements, usually used to check if the existence of an element in the set (ex. a set of visited nodes)
+ * - set: maintain a set of elements, usually used to check if the existence of an element in the set
+ *        (ex. a set of visited nodes)
  *
  *     usages:
  *       set<int> s;           // ordered set, s.begin() points to the smallest value
