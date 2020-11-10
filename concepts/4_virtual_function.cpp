@@ -56,5 +56,10 @@ int main() {
     ptr -> show(); ptr -> virtual_show(); ptr -> pure_virtual_show();
     cout << "Call by reference of Base class" << endl;
     callByReference(derived);
+    cout << "Call by reference of Base class" << endl;
+    Base &base = derived;
+    base.show(); base.virtual_show(); base.pure_virtual_show();
+    cout << "Call by reference in method" << endl;
+    callByReference(derived);
     return 0;
 }
